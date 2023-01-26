@@ -36,10 +36,10 @@ export function Dashparameters() {
           </p>
           <p className="dashparameter___textname">
             Scope3 
+          {/* <i className="bi bi-circle-fill scope-4-fill" />  */}
           </p>
         </div>
       </div>
     </div>
   );
 }
-{/* <i className="bi bi-circle-fill scope-3-fill" /> */}

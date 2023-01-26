@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { Reportend } from '../components/Reportend';
 import { Dashparameters } from '../components/Dashparameters';
 import { Lowsootfooter } from '../components/Lowsootfooter';
 import { useVisuals } from '../contexts/Visualcontext';
@@ -20,6 +19,13 @@ import dayjs from 'dayjs';
 import { createTheme, CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import JsPDF from 'jspdf';
+import { Summaryend } from '../components/Summaryend';
+import kms from '../assets/sidenav/sidenavv3/truck.svg'
+import electrcity from '../assets/sidenav/sidenavv3/electricity.svg'
+import buisness from '../assets/sidenav/sidenavv3/buisness_commute.svg'
+import employee from '../assets/sidenav/sidenavv3/employee_commute.svg'
+import carbon from '../assets/sidenav/sidenavv3/carbon-intensity.svg'
+import scrap from '../assets/sidenav/sidenavv3/scrap.svg'
 
 export function Hompage() {
   const { dateval, setDateval, enddateval, setEnddateval } = useVisuals();
@@ -60,7 +66,7 @@ export function Hompage() {
       <div className='homemainv2'>
         <Topbarv3 />
         <div className='homemaincontentv2'>
-          <Reportend generatePDF={generatePDF} componentRef={componentRef} />
+          <Summaryend generatePDF={generatePDF} componentRef={componentRef} />
           <div
             ref={componentRef}
             id='report__datacontainer'
@@ -76,8 +82,9 @@ export function Hompage() {
               <div className='summaryparams'>
                 <div className='summaryparam'>
                   <p className='summaryparam__title'>
-                    Total number of <br />
-                    kilometers travelled
+                    Total number of
+                    kms travelled
+                    <img src={kms} alt="" />
                   </p>
                   <p className='summaryparam__value'>23392 kms</p>
                 </div>
@@ -85,6 +92,7 @@ export function Hompage() {
                   <p className='summaryparam__title'>
                     Total number of
                     <br /> electricity consumed
+                    <img src={electrcity} style={{marginLeft:"2px"}} alt="" />
                   </p>
                   <p className='summaryparam__value'>19000 KWh </p>
                 </div>
@@ -93,6 +101,7 @@ export function Hompage() {
                     Total Business
                     <br />
                     Commuting
+                    <img src={buisness} style={{marginLeft:"10px"}} alt="" />
                   </p>
                   <p className='summaryparam__value'>19000 KWh </p>
                 </div>
@@ -100,6 +109,7 @@ export function Hompage() {
                   <p className='summaryparam__title'>
                     Total Employees
                     <br /> Commuting
+                    <img src={employee} style={{marginLeft:"10px"}} alt="" />
                   </p>
                   <p className='summaryparam__value'>19000 KWh </p>
                 </div>
@@ -199,11 +209,12 @@ export function Hompage() {
               {/* Part 4 below */}
               <div className='summaryparams'>
                 <div className='summaryparam'>
-                  <p className='summaryparam__title'>Carbon Intensity</p>
+                  <p className='summaryparam__title'>Carbon Intensity
+                  <img src={carbon} style={{marginLeft:"10px"}} alt="" /></p>
                   <p className='summaryparam__value'>23392 kms</p>
                 </div>
                 <div className='summaryparam'>
-                  <p className='summaryparam__title'>Scrap %</p>
+                  <p className='summaryparam__title'>Scrap %<img src={scrap} style={{marginLeft:"10px"}} alt="" /></p>
                   <p className='summaryparam__value'>19000 KWh </p>
                 </div>
 

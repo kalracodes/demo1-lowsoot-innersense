@@ -127,7 +127,7 @@
   /* border-radius: 4.7rem; */
   border-radius: 2rem;
   /* padding: 1rem 2rem; */
-  padding: 3.2rem 3rem;
+  padding: 3.2rem 3rem; /* for changing the bich ka diff*/
 }
 .dashgraphs {
   display: flex;
@@ -154,7 +154,7 @@
   margin-right: auto;
 }
 .dashgraphline__cont {
-  width: 53rem;
+  width: 50rem;
   background-color: var(--graoh-bg);
   height: 30rem;
   margin-left: auto;

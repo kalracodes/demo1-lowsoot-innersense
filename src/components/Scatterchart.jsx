@@ -11,6 +11,7 @@ import {
 // import { getmonthno } from "../functions/setmonthnum";
 
 export function Scatterchartgraph(params) {
+  const co2 = " CO2E";
   const { colorvalue } = params;
   const scatterfill = colorvalue ? colorvalue : "#8884d8";
   //   const { vizarray } = params;
@@ -21,7 +22,7 @@ export function Scatterchartgraph(params) {
   //   const juend = Number(enddateval.slice(5, 7));
   //   const jju = [...vizx].slice(ju, juend);
   const data = [
-    { x: 100, y: 200, z: 200 },
+    { x: 150, y: 200, z: 200 },
     { x: 120, y: 100, z: 260 },
     { x: 170, y: 300, z: 400 },
     { x: 140, y: 250, z: 280 },
@@ -42,10 +43,15 @@ export function Scatterchartgraph(params) {
         }}
       >
         <CartesianGrid />
-        <XAxis type="number" dataKey="x" name="stature" unit="co2e" />
+        <XAxis type="number" dataKey="x" name="stature" unit=" CO2E" style={{
+            fontSize: "1rem",
+            fontWeight: "400",
+            lineHeight: "1.5rem",
+            fontFamily: "Inter",
+          }} />
         <YAxis
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1rem",
             fontWeight: "400",
             lineHeight: "1.5rem",
             fontFamily: "Inter",
@@ -54,7 +60,7 @@ export function Scatterchartgraph(params) {
           type="number"
           dataKey="y"
           name="weight"
-          unit="co2e"
+          unit={co2}
         />
         <Tooltip cursor={{ strokeDasharray: "3 3" }} />
         <Scatter name="emmision" data={data} fill={scatterfill} />

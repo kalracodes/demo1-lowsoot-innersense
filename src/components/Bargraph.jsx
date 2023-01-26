@@ -48,7 +48,7 @@ export function Bargraph(params) {
       },
       plotOptions: {
         bar: {
-          columnWidth: "75%",
+          columnWidth: "20%",
         },
       },
       colors: [fillvalue, "#00E396", "#FF4560", "#FEB019", "#775DD0"],

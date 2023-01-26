@@ -27,8 +27,9 @@ export function Dashboard() {
           <h1 className='dashheader'>
             <span className='introjs__3'>Visualization</span>
           </h1>
+          <Dashparameters />
           {name === 'Building' ? (
-            <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'0rem'}}>
+            <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'1rem'}}>
               <div className='summaryparam'>
                 <p className='product_tab_title'>Total Building Space</p>
                 <p className='product_tab_value'>19000 KWh </p>
@@ -40,7 +41,7 @@ export function Dashboard() {
             </div>
           ) : (
             name === 'product' ? (
-              <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'0 rem'}}>
+              <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'1 rem'}}>
                 <div className='summaryparam'>
                   <p className='product_tab_title'>Maternity bra</p>
                   <p className='product_tab_value'>20000 units</p>
@@ -83,7 +84,7 @@ export function Dashboard() {
                 </div>
               </div>
             ) :
-            <Dashparameters />
+            <span></span>
           )}
           <div className='dashgraphs__cont'>
             {name === 'travel' && <Dashgraph />}
