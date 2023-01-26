@@ -87,7 +87,7 @@
   margin-right: 5rem;
 }
 .summaryparam {
-  width: 250px;
+  width: 280px;
   font-family: 'Inter', sans-serif;
 }
 .summaryparam .summaryparam__value {
@@ -110,17 +110,17 @@
   gap: 1rem;
 }
 .dashparameter .dashparameter___textvalue {
-  font-size: 35px;
+  font-size: 30px;
 }
 .head-content,
 .bg {
   background-color: #fff;
 }
 .scope-1-fill {
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 .sum-1 {
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 .sum-last {
   padding-bottom: 2rem;
