@@ -34,7 +34,7 @@
   font-weight: 700;
   line-height: 4.8rem;
   letter-spacing: -0.04em;
-  color: #4D7CFE;
+  color: #4d7cfe;
 }
 .summaryparam__title {
   display: flex;
@@ -56,7 +56,8 @@
 .homemaincontentv2 {
   display: flex;
   flex-direction: column;
-  padding-left: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .homemainheaderv2 {
   font-weight: 600;

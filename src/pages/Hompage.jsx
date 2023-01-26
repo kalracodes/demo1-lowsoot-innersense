@@ -20,12 +20,12 @@ import { createTheme, CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import JsPDF from 'jspdf';
 import { Summaryend } from '../components/Summaryend';
-import kms from '../assets/sidenav/sidenavv3/truck.svg'
-import electrcity from '../assets/sidenav/sidenavv3/electricity.svg'
-import buisness from '../assets/sidenav/sidenavv3/buisness_commute.svg'
-import employee from '../assets/sidenav/sidenavv3/employee_commute.svg'
-import carbon from '../assets/sidenav/sidenavv3/carbon-intensity.svg'
-import scrap from '../assets/sidenav/sidenavv3/scrap.svg'
+import kms from '../assets/sidenav/sidenavv3/truck.svg';
+import electrcity from '../assets/sidenav/sidenavv3/electricity.svg';
+import buisness from '../assets/sidenav/sidenavv3/buisness_commute.svg';
+import employee from '../assets/sidenav/sidenavv3/employee_commute.svg';
+import carbon from '../assets/sidenav/sidenavv3/carbon-intensity.svg';
+import scrap from '../assets/sidenav/sidenavv3/scrap.svg';
 
 export function Hompage() {
   const { dateval, setDateval, enddateval, setEnddateval } = useVisuals();
@@ -70,7 +70,7 @@ export function Hompage() {
           <div
             ref={componentRef}
             id='report__datacontainer'
-            style={{ padding: '1.5rem',marginTop:'-4rem'}}
+            style={{ padding: '1.5rem', marginTop: '-4rem' }}
           >
             <div className='head-content'>
               <h1 id='introjs__1' className='homemainheaderv2'>
@@ -78,152 +78,162 @@ export function Hompage() {
               </h1>
             </div>
             <>
-              <Dashparameters />
-              <div className='summaryparams'>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Total number of
-                    kms travelled
-                    <img src={kms} alt="" />
-                  </p>
-                  <p className='summaryparam__value'>23392 kms</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Total number of
-                    <br /> electricity consumed
-                    <img src={electrcity} style={{marginLeft:"2px"}} alt="" />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Total Business
-                    <br />
-                    Commuting
-                    <img src={buisness} style={{marginLeft:"10px"}} alt="" />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Total Employees
-                    <br /> Commuting
-                    <img src={employee} style={{marginLeft:"10px"}} alt="" />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                {/* <div className="summaryparam">
+              <div className='bg'>
+                <Dashparameters />
+                <div className='summaryparams'>
+                  <div className='summaryparam sum-1'>
+                    <p className='summaryparam__title'>
+                      Total number of kms travelled
+                      <img src={kms} alt='' />
+                    </p>
+                    <p className='summaryparam__value'>23392 kms</p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Total number of
+                      <br /> electricity consumed
+                      <img
+                        src={electrcity}
+                        style={{ marginLeft: '2px' }}
+                        alt=''
+                      />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Total Business
+                      <br />
+                      Commuting
+                      <img
+                        src={buisness}
+                        style={{ marginLeft: '10px' }}
+                        alt=''
+                      />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Total Employees
+                      <br /> Commuting
+                      <img
+                        src={employee}
+                        style={{ marginLeft: '10px' }}
+                        alt=''
+                      />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Amount of emissions
+                      <br />
+                      for each product
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope
                 </p>
                 <p className="summaryparam__value">1521.7 Liters </p>
               </div> */}
-              </div>
-              {/* Part 2 below */}
-              <div className='summaryparams'>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Amount of emissions
-                    <br />
-                    for each product
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
                 </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Carbon Saved on
-                    <br />
-                    Maternity Bra
-                    <br />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Carbon Saved on
-                    <br />
-                    Regular Bra
-                    <br />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>
-                    Carbon Saved on
-                    <br />
-                    Pantry
-                    <br />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                {/* <div className="summaryparam">
+                {/* Part 2 below */}
+                <div className='summaryparams'>
+                  <div className='summaryparam sum-1'>
+                    <p className='summaryparam__title'>
+                      Carbon Saved on
+                      <br />
+                      Maternity Bra
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Carbon Saved on
+                      <br />
+                      Regular Bra
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Carbon Saved on
+                      <br />
+                      Pantry
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title smallest'>
+                      Carbon Saved on
+                      <br />
+                      Loungee Long tee kind
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title '>
+                      Carbon Saved on
+                      <br />
+                      Loungee Dress kind
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope
                 </p>
                 <p className="summaryparam__value">1521.7 Liters </p>
               </div> */}
-              </div>
-              {/* Part 3 below */}
-              <div className='summaryparams'>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title smallest'>
-                    Carbon Saved on
-                    <br />
-                    Loungee Long tee kind
-                    <br />
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
                 </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title '>
-                    Carbon Saved on
-                    <br />
-                    Loungee Dress kind
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title '>
-                    Carbon Saved on
-                    <br />
-                    Nighty
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title '>
-                    Carbon Saved on
-                    <br />
-                    Long Bottom
-                  </p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-                {/* <div className="summaryparam">
+                {/* Part 3 below */}
+                <div className='summaryparams sum-last'>
+                  <div className='summaryparam sum-1'>
+                    <p className='summaryparam__title '>
+                      Carbon Saved on
+                      <br />
+                      Nighty
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title '>
+                      Carbon Saved on
+                      <br />
+                      Long Bottom
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope
                 </p>
                 <p className="summaryparam__value">1521.7 Liters </p>
               </div> */}
-              </div>
-              {/* Part 4 below */}
-              <div className='summaryparams'>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>Carbon Intensity
-                  <img src={carbon} style={{marginLeft:"10px"}} alt="" /></p>
-                  <p className='summaryparam__value'>23392 kms</p>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Carbon Intensity
+                      <img src={carbon} style={{ marginLeft: '10px' }} alt='' />
+                    </p>
+                    <p className='summaryparam__value'>23392 kms</p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Scrap %
+                      <img src={scrap} style={{ marginLeft: '10px' }} alt='' />
+                    </p>
+                    <p className='summaryparam__value'>19000 KWh </p>
+                  </div>
+                  <br />
+                  <br />
                 </div>
-                <div className='summaryparam'>
-                  <p className='summaryparam__title'>Scrap %<img src={scrap} style={{marginLeft:"10px"}} alt="" /></p>
-                  <p className='summaryparam__value'>19000 KWh </p>
-                </div>
-
-                {/* <div className="summaryparam">
-                <p className="summaryparam__title">
-                  Total fuel <br /> scope
-                </p>
-                <p className="summaryparam__value">1521.7 Liters </p>
-              </div> */}
               </div>
               <br />
               <br />
