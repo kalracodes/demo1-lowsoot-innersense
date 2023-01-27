@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useNavc } from "../contexts/Navcontext";
-
+import visual_img from "../assets/visualisation.svg"
 // import filterlogo from "../assets/databoard/filter-filled-tool-symbol 1.png";
 export function Databoardcontols() {
   const { navdispatch } = useNavc();
@@ -21,6 +21,7 @@ export function Databoardcontols() {
         }}
         className="databoardtabletop__movetoviz"
       >
+        <img src={visual_img} alt="" />
         Move to visualization
       </button>
       {/* <label className="databoardtabletop__controlname invisible">

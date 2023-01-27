@@ -23,9 +23,10 @@
 .footer__container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
+  align-items: flex-start;
+  padding-left:8rem;
+  margin-bottom:3.438rem;
+  margin-top: 5.625rem;
 }
 .made__in__india {
   font-size: 1.6rem;
