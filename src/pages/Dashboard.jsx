@@ -29,61 +29,82 @@ export function Dashboard() {
           </h1>
           <Dashparameters />
           {name === 'Building' ? (
-            <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'1rem'}}>
+            <div
+              className='summaryparams'
+              style={{ flexWrap: 'wrap', marginTop: '1rem' }}
+            >
               <div className='summaryparam'>
                 <p className='product_tab_title'>Total Building Space</p>
-                <p className='product_tab_value'>19000 KWh </p>
+                <p className='product_tab_value'>19000 sq.m </p>
+              </div>
+              <div className='summaryparam sp-param'>
+                <p className='product_tab_title'>Total Warehouse Space</p>
+                <p className='product_tab_value'>19000 sq.m </p>
+              </div>
+            </div>
+          ) : name === 'product' ? (
+            <div
+              className='summaryparams'
+              style={{ flexWrap: 'wrap', marginTop: '1 rem' }}
+            >
+              <div className='summaryparam'>
+                <p className='product_tab_title'>Maternity bra</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
               </div>
               <div className='summaryparam'>
-                <p className='product_tab_title'>Total Building Space</p>
-                <p className='product_tab_value'>19000 KWh </p>
+                <p className='product_tab_title'>Regular bra</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam sm-param'>
+                <p className='product_tab_title'>Panty</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam sp-param'>
+                <p className='product_tab_title'>Loungee Long tee kind</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam'>
+                <p className='product_tab_title'>Loungee dress kind</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam'>
+                <p className='product_tab_title'>Maternity bra</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam sm-param'>
+                <p className='product_tab_title'>Nighty</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
+              </div>
+              <div className='summaryparam'>
+                <p className='product_tab_title'>Lounge Bottom</p>
+                <p className='product_tab_value'>20000 units</p>
+                <p className='product_tab_value'>
+                  50000 Co<sub>2</sub>e
+                </p>
               </div>
             </div>
           ) : (
-            name === 'product' ? (
-              <div className='summaryparams' style={{flexWrap:'wrap',marginTop:'1 rem'}}>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Maternity bra</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Regular bra</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Panty</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Loungee Long<br/> tee kind</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Loungee dress kind</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Maternity bra</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Nighty</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-                <div className='summaryparam'>
-                  <p className='product_tab_title'>Lounge Bottom</p>
-                  <p className='product_tab_value'>20000 units</p>
-                  <p className='product_tab_value'>50000 KgCo<sub>2</sub>e</p>
-                </div>
-              </div>
-            ) :
             <span></span>
           )}
           <div className='dashgraphs__cont'>

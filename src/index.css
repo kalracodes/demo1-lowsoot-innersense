@@ -24,8 +24,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left:8rem;
-  margin-bottom:3.438rem;
+  padding-left: 8rem;
+  margin-bottom: 3.438rem;
   margin-top: 5.625rem;
 }
 .made__in__india {
@@ -94,6 +94,7 @@
 .summaryparam .summaryparam__value {
   font-size: 3rem;
   font-weight: 900;
+  align-self: flex-start;
 }
 
 .summaryparam .summaryparam__title {
@@ -128,4 +129,13 @@
 }
 .dashparameter {
   font-family: 'Inter', sans-serif;
+}
+.sp-param {
+  width: 295px;
+}
+.sm-param {
+  width: 235px;
+}
+text {
+  font-weight: 700;
 }

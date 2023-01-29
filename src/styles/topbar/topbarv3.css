@@ -16,12 +16,13 @@
 .topbarv3 {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 8rem;
   background-color: white;
 }
 .topbarv3__imglogocont {
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +36,9 @@
   font-size: 1.6rem;
   line-height: 1.6rem;
   text-transform: uppercase;
+  margin-top: 0.5rem;
   color: #757575;
+  margin-left: 1rem;
 }
 .topbarv3__companycont {
   display: flex;
@@ -64,8 +67,9 @@
 .topbarv3__logos {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  text-align: right;
   gap: 1.2rem;
-  margin-right: 4.3rem;
 }
 .topbarv3__imgmain {
   max-width: 20rem;

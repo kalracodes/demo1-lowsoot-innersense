@@ -83,20 +83,7 @@ export function Hompage() {
                 <div className='summaryparams'>
                   <div className='summaryparam sum-1'>
                     <p className='summaryparam__title'>
-                      Total number of kms travelled
-                      <img src={kms} alt='' />
-                    </p>
-                    <p className='summaryparam__value'>23392 kms</p>
-                  </div>
-                  <div className='summaryparam'>
-                    <p className='summaryparam__title'>
-                      Total number of
-                      <br /> electricity consumed
-                      <img
-                        src={electrcity}
-                        style={{ marginLeft: '2px' }}
-                        alt=''
-                      />
+                      Total Electricity consumed
                     </p>
                     <p className='summaryparam__value'>19000 KWh </p>
                   </div>
@@ -105,27 +92,27 @@ export function Hompage() {
                       Total Business
                       <br />
                       Commuting
-                      <img
-                        src={buisness}
-                        style={{ marginLeft: '10px' }}
-                        alt=''
-                      />
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>19000 Kms </p>
                   </div>
                   <div className='summaryparam'>
                     <p className='summaryparam__title'>
                       Total Employees
                       <br /> Commuting
-                      <img
-                        src={employee}
-                        style={{ marginLeft: '10px' }}
-                        alt=''
-                      />
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>19000 Kms </p>
                   </div>
-
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>
+                      Carbon Emission on
+                      <br />
+                      Maternity Bra
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
                   {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope
@@ -137,40 +124,48 @@ export function Hompage() {
                 <div className='summaryparams'>
                   <div className='summaryparam sum-1'>
                     <p className='summaryparam__title'>
-                      Amount of emissions
-                      <br />
-                      for each product
-                    </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
-                  </div>
-                  <div className='summaryparam'>
-                    <p className='summaryparam__title'>
-                      Carbon Saved on
-                      <br />
-                      Maternity Bra
-                      <br />
-                    </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
-                  </div>
-                  <div className='summaryparam'>
-                    <p className='summaryparam__title'>
-                      Carbon Saved on
+                      Carbon Emission on
                       <br />
                       Regular Bra
                       <br />
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
                   </div>
                   <div className='summaryparam'>
                     <p className='summaryparam__title'>
-                      Carbon Saved on
+                      Carbon Emission on
                       <br />
                       Pantry
                       <br />
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
                   </div>
 
+                  <div className='summaryparam '>
+                    <p className='summaryparam__title smallest'>
+                      Carbon Emission on
+                      <br />
+                      Loungee Long tee kind
+                      <br />
+                    </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
+                  <div className='summaryparam '>
+                    <p className='summaryparam__title '>
+                      Carbon Emission on
+                      <br />
+                      Loungee Dress kind
+                    </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
                   {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope
@@ -181,37 +176,32 @@ export function Hompage() {
                 {/* Part 3 below */}
                 <div className='summaryparams'>
                   <div className='summaryparam sum-1'>
-                    <p className='summaryparam__title smallest'>
-                      Carbon Saved on
-                      <br />
-                      Loungee Long tee kind
-                      <br />
-                    </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
-                  </div>
-                  <div className='summaryparam'>
                     <p className='summaryparam__title '>
-                      Carbon Saved on
-                      <br />
-                      Loungee Dress kind
-                    </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
-                  </div>
-                  <div className='summaryparam'>
-                    <p className='summaryparam__title '>
-                      Carbon Saved on
+                      Carbon Emission on
                       <br />
                       Nighty
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
                   </div>
                   <div className='summaryparam'>
                     <p className='summaryparam__title '>
-                      Carbon Saved on
+                      Carbon Emission on
                       <br />
                       Long Bottom
                     </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
+                  <div className='summaryparam '>
+                    <p className='summaryparam__title'>Carbon Intensity</p>
+                    <p className='summaryparam__value'>23392 </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title'>Scrap %</p>
+                    <p className='summaryparam__value'>19000 </p>
                   </div>
                   {/* <div className="summaryparam">
                 <p className="summaryparam__title">
@@ -220,22 +210,7 @@ export function Hompage() {
                 <p className="summaryparam__value">1521.7 Liters </p>
               </div> */}
                 </div>
-                <div className='summaryparams sum-last'>
-                  <div className='summaryparam sum-1'>
-                    <p className='summaryparam__title'>
-                      Carbon Intensity
-                      <img src={carbon} style={{ marginLeft: '10px' }} alt='' />
-                    </p>
-                    <p className='summaryparam__value'>23392 kms</p>
-                  </div>
-                  <div className='summaryparam'>
-                    <p className='summaryparam__title'>
-                      Scrap %
-                      <img src={scrap} style={{ marginLeft: '10px' }} alt='' />
-                    </p>
-                    <p className='summaryparam__value'>19000 KWh </p>
-                  </div>
-                </div>
+                <div className='summaryparams sum-last'></div>
               </div>
               <br />
               <br />
