@@ -6,6 +6,7 @@ export function Databoardtabledel() {
   const [vehicleType, setVehicle] = useState('');
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
+  const [destintion, setDestination] = useState('');
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -14,32 +15,32 @@ export function Databoardtabledel() {
   const [lo, setLo] = useState([
     {
       date: 'Jun 25, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      dest: 'Mumbai',
       distance: 200,
     },
     {
       date: 'Jun 25, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      dest: 'Mumbai',
       distance: 200,
     },
     {
       date: 'Jun 26, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      dest: 'Mumbai',
       distance: 200,
     },
     {
       date: 'Jun 27, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      dest: 'Mumbai',
       distance: 200,
     },
     {
       date: 'Jun 28, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      dest: 'Mumbai',
       distance: 200,
     },
   ]);
@@ -56,10 +57,10 @@ export function Databoardtabledel() {
               Date
             </th>
             <th className='databoardtable__theadth' scope='col'>
-              Type of Fuel
+              Type of Vehicle
             </th>
             <th className='databoardtable__theadth' scope='col'>
-              Type of Vehicle
+              Destination City
             </th>
             <th className='databoardtable__theadth' scope='col'>
               Amount of Distance
@@ -71,8 +72,8 @@ export function Databoardtabledel() {
             return (
               <tr key={idx} className='databoardtable__tabletr'>
                 <td className='databoardtable__tabletd'>{item.date}</td>
-                <td className='databoardtable__tabletd'>{item.fuelType}</td>
                 <td className='databoardtable__tabletd'>{item.vehicleType}</td>
+                <td className='databoardtable__tabletd'>{item.dest}</td>
                 <td className='databoardtable__tabletd'>
                   {item.distance}&nbsp;kms
                 </td>
@@ -102,29 +103,7 @@ export function Databoardtabledel() {
                 padding: '8px',
               }}
             />
-            <select
-              type={'text'}
-              value={fuelType}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                padding: '8px',
-                margin: '0px 8px 16px 8px',
-                borderRadius: '4px',
-                height: '30px',
-              }}
-              required={true}
-              onChange={(e) => {
-                const value = e.target.value;
-                setFuel(value);
-              }}
-            >
-              <option selected='' disabled='' value=''>
-                Choose...
-              </option>
-              <option>Petrol</option>
-              <option>Diesel</option>
-            </select>
+
             <select
               type={'text'}
               value={vehicleType}
@@ -148,6 +127,22 @@ export function Databoardtabledel() {
               <option>3-Wheeler</option>
               <option>4-Wheeler</option>
             </select>
+
+            <input
+              type={'text'}
+              value={destintion}
+              style={{
+                appearance: 'none',
+                border: 'solid 0.5px',
+                padding: '8px',
+                borderRadius: '4px',
+              }}
+              required={true}
+              onChange={(e) => {
+                setDestination(e.target.value);
+              }}
+            />
+
             <input
               type={'number'}
               value={distance}
@@ -193,7 +188,7 @@ export function Databoardtabledel() {
                   distance !== '' &&
                   dates !== '' &&
                   vehicleType !== '' &&
-                  fuelType !== ''
+                  destintion !== ''
                 ) {
                   const dateString = dates;
                   const date = new Date(dateString);
@@ -211,8 +206,8 @@ export function Databoardtabledel() {
                     ...lo,
                     {
                       date: formattedDate,
-                      fuelType: fuelType,
                       vehicleType: vehicleType,
+                      dest: destintion,
                       distance: distance,
                     },
                   ]);

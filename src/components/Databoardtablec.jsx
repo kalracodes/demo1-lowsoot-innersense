@@ -6,6 +6,7 @@ export function Databoardtablec() {
   const [vehicleType, setVehicle] = useState('');
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
+  const [wt, setWt] = useState('');
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -14,32 +15,32 @@ export function Databoardtablec() {
   const [lo, setLo] = useState([
     {
       date: 'Jun 25, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      weight: 100,
       distance: 200,
     },
     {
       date: 'Jun 25, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      weight: 100,
       distance: 200,
     },
     {
       date: 'Jun 26, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      weight: 100,
       distance: 200,
     },
     {
       date: 'Jun 27, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      weight: 100,
       distance: 200,
     },
     {
       date: 'Jun 28, 2022',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      weight: 100,
       distance: 200,
     },
   ]);
@@ -56,10 +57,10 @@ export function Databoardtablec() {
               Date
             </th>
             <th className='databoardtable__theadth' scope='col'>
-              Type of Fuel
+              Type of Vehicle
             </th>
             <th className='databoardtable__theadth' scope='col'>
-              Type of Vehicle
+              Weight(in kg)
             </th>
             <th className='databoardtable__theadth' scope='col'>
               Amount of Distance
@@ -71,8 +72,8 @@ export function Databoardtablec() {
             return (
               <tr key={idx} className='databoardtable__tabletr'>
                 <td className='databoardtable__tabletd'>{item.date}</td>
-                <td className='databoardtable__tabletd'>{item.fuelType}</td>
                 <td className='databoardtable__tabletd'>{item.vehicleType}</td>
+                <td className='databoardtable__tabletd'>{item.weight}</td>
                 <td className='databoardtable__tabletd'>
                   {item.distance}&nbsp;kms
                 </td>
@@ -94,30 +95,11 @@ export function Databoardtablec() {
                 borderRadius: '4px',
                 padding: '1.2rem',
                 boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                marginLeft: '1rem',
+                marginRight: '6rem',
               }}
             />
-            <select
-              type={'text'}
-              value={fuelType}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                margin: '0 8rem',
-                borderRadius: '4px',
-                padding: '1.5rem',
-              }}
-              required={true}
-              onChange={(e) => {
-                const value = e.target.value;
-                setFuel(value);
-              }}
-            >
-              <option selected='' disabled='' value=''>
-                Choose...
-              </option>
-              <option>Petrol</option>
-              <option>Diesel</option>
-            </select>
+
             <select
               type={'text'}
               value={vehicleType}
@@ -141,6 +123,26 @@ export function Databoardtablec() {
               <option>3-Wheeler</option>
               <option>4-Wheeler</option>
             </select>
+
+            <input
+              type={'number'}
+              value={wt}
+              style={{
+                appearance: 'none',
+                border: 'solid 0.5px',
+                margin: '0px 0rem 0rem 10rem ',
+                borderRadius: '4px',
+              }}
+              required={true}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                if (value > -1) {
+                  setWt(value);
+                } else if (e.target.value === '') {
+                  setWt('');
+                }
+              }}
+            />
 
             <input
               type={'number'}
@@ -187,7 +189,7 @@ export function Databoardtablec() {
                   distance !== '' &&
                   dates !== '' &&
                   vehicleType !== '' &&
-                  fuelType !== ''
+                  wt !== ''
                 ) {
                   const dateString = dates;
                   const date = new Date(dateString);
@@ -205,8 +207,8 @@ export function Databoardtablec() {
                     ...lo,
                     {
                       date: formattedDate,
-                      fuelType: fuelType,
                       vehicleType: vehicleType,
+                      weight: wt,
                       distance: distance,
                     },
                   ]);

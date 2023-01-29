@@ -4,17 +4,18 @@ export function Databoardtablee() {
   const [showInput, setShowInput] = useState(false);
   const [energy, setEnergy] = useState('');
   const [dates, setDate] = useState('');
+  const [source, setSource] = useState('');
 
   const handleChange = (event) => {
     setDate(event.target.value);
   };
 
   const [lo, setLo] = useState([
-    { date: 'Jun 25, 2022', energy: 1000 },
-    { date: 'Jun 25, 2022', energy: 1000 },
-    { date: 'Jun 26, 2022', energy: 2000 },
-    { date: 'Jun 27, 2022', energy: 3000 },
-    { date: 'Jun 28, 2022', energy: 4000 },
+    { date: 'Jun 25, 2022', energy: 1000, source: 'Station' },
+    { date: 'Jun 25, 2022', energy: 1000, source: 'Station' },
+    { date: 'Jun 26, 2022', energy: 2000, source: 'Station' },
+    { date: 'Jun 27, 2022', energy: 3000, source: 'Station' },
+    { date: 'Jun 28, 2022', energy: 4000, source: 'Station' },
   ]);
 
   return (
@@ -29,6 +30,9 @@ export function Databoardtablee() {
               Date
             </th>
             <th className='databoardtable__theadth' scope='col'>
+              Source
+            </th>
+            <th className='databoardtable__theadth' scope='col'>
               Number of Units
             </th>
           </tr>
@@ -38,6 +42,7 @@ export function Databoardtablee() {
             return (
               <tr key={idx} className='databoardtable__tabletr'>
                 <td className='databoardtable__tabletd'>{item.date}</td>
+                <td className='databoardtable__tabletd'>{item.source}</td>
                 <td className='databoardtable__tabletd'>{item.energy}</td>
               </tr>
             );
@@ -62,9 +67,25 @@ export function Databoardtablee() {
                 border: 'solid 0.5px',
                 borderRadius: '4px',
                 boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                margin: '0 0.2rem 0 13rem ',
+                margin: '0 0.0rem 0 1rem ',
 
                 padding: '8px',
+              }}
+            />
+
+            <input
+              type={'text'}
+              value={source}
+              style={{
+                appearance: 'none',
+                border: 'solid 0.5px',
+                padding: '8px',
+                margin: '0 0.25rem 0 15rem',
+                borderRadius: '4px',
+              }}
+              required={true}
+              onChange={(e) => {
+                setSource(e.target.value);
               }}
             />
 
@@ -109,7 +130,12 @@ export function Databoardtablee() {
                 <td class="databoardtable__tabletd">coming soon</td>
               </tr>
                 `*/
-                if (energy > -1 && energy !== '' && dates !== '') {
+                if (
+                  energy > -1 &&
+                  energy !== '' &&
+                  dates !== '' &&
+                  source == ''
+                ) {
                   const dateString = dates;
                   const date = new Date(dateString);
                   const options = {
@@ -122,7 +148,10 @@ export function Databoardtablee() {
                     'en-US',
                     options
                   );
-                  setLo([...lo, { date: formattedDate, energy: energy }]);
+                  setLo([
+                    ...lo,
+                    { date: formattedDate, energy: energy, source: source },
+                  ]);
                   setShowInput(false);
                 }
               }}

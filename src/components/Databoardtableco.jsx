@@ -7,6 +7,7 @@ export function Databoardtableco() {
   const [vehicleType, setVehicle] = useState('');
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
+  const [passengers, setPassengers] = useState('');
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -16,35 +17,35 @@ export function Databoardtableco() {
     {
       date: 'Jun 25, 2022',
       comType: 'Business Commute',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      passengersNo: 4,
       distance: 200,
     },
     {
       date: 'Jun 25, 2022',
       comType: 'Business Commute',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      passengersNo: 4,
       distance: 200,
     },
     {
       date: 'Jun 26, 2022',
       comType: 'Business Commute',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      passengersNo: 4,
       distance: 200,
     },
     {
       date: 'Jun 27, 2022',
       comType: 'Business Commute',
-      fuelType: 'Petrol',
       vehicleType: '2-wheller',
+      passengersNo: 4,
       distance: 200,
     },
     {
       date: 'Jun 28, 2022',
       comType: 'Business Commute',
-      fuelType: 'Petrol',
+      passengersNo: 4,
       vehicleType: '2-wheller',
       distance: 200,
     },
@@ -64,11 +65,12 @@ export function Databoardtableco() {
             <th className='databoardtable__theadth' scope='col'>
               Type of Commute
             </th>
-            <th className='databoardtable__theadth' scope='col'>
-              Type of Fuel
-            </th>
+
             <th className='databoardtable__theadth' scope='col'>
               Type of Vehicle
+            </th>
+            <th className='databoardtable__theadth' scope='col'>
+              Number Of Passengers
             </th>
             <th className='databoardtable__theadth' scope='col'>
               Amount of Distance
@@ -81,8 +83,8 @@ export function Databoardtableco() {
               <tr key={idx} className='databoardtable__tabletr'>
                 <td className='databoardtable__tabletd'>{item.date}</td>
                 <td className='databoardtable__tabletd'>{item.comType}</td>
-                <td className='databoardtable__tabletd'>{item.fuelType}</td>
                 <td className='databoardtable__tabletd'>{item.vehicleType}</td>
+                <td className='databoardtable__tabletd'>{item.passengersNo}</td>
                 <td className='databoardtable__tabletd'>{item.distance}</td>
               </tr>
             );
@@ -132,28 +134,7 @@ export function Databoardtableco() {
               <option>Business Commute</option>
               <option>Employee Commute</option>
             </select>
-            <select
-              type={'text'}
-              value={fuelType}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                padding: '8px',
-                margin: '0 9rem 0 2.4rem',
-                borderRadius: '4px',
-              }}
-              required={true}
-              onChange={(e) => {
-                const value = e.target.value;
-                setFuel(value);
-              }}
-            >
-              <option selected='' disabled='' value=''>
-                Choose...
-              </option>
-              <option>Petrol</option>
-              <option>Diesel</option>
-            </select>
+
             <select
               type={'text'}
               value={vehicleType}
@@ -177,6 +158,29 @@ export function Databoardtableco() {
               <option>3-Wheeler</option>
               <option>4-Wheeler</option>
             </select>
+
+            <input
+              type={'number'}
+              value={passengers}
+              style={{
+                appearance: 'none',
+                border: 'solid 0.5px',
+                padding: '8px',
+                margin: '0 1rem 0 0.5rem',
+                borderRadius: '4px',
+                width: '10vw',
+                justifySelf: 'flex-end',
+              }}
+              required={true}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                if (value > -1) {
+                  setPassengers(value);
+                } else if (e.target.value === '') {
+                  setPassengers('');
+                }
+              }}
+            />
 
             <input
               type={'number'}
@@ -226,8 +230,7 @@ export function Databoardtableco() {
                   distance !== '' &&
                   dates !== '' &&
                   comType !== '' &&
-                  vehicleType !== '' &&
-                  fuelType !== ''
+                  vehicleType !== ''
                 ) {
                   const dateString = dates;
                   const date = new Date(dateString);
@@ -246,11 +249,11 @@ export function Databoardtableco() {
                     {
                       date: formattedDate,
                       comType: comType,
-                      fuelType: fuelType,
                       vehicleType: vehicleType,
                       distance: distance,
                     },
                   ]);
+                  console.log(lo);
                   setShowInput(false);
                 }
               }}
