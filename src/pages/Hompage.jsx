@@ -137,7 +137,7 @@ export function Hompage() {
                     <p className='summaryparam__title'>
                       Carbon Emission on
                       <br />
-                      Pantry
+                      Panty
                       <br />
                     </p>
                     <p className='summaryparam__value'>
@@ -195,6 +195,42 @@ export function Hompage() {
                       19000 CO<sub>2</sub>e{' '}
                     </p>
                   </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title '>
+                      Carbon Saved on
+                      <br />
+                      Maternity Bra
+                    </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
+                  <div className='summaryparam'>
+                    <p className='summaryparam__title '>
+                      Carbon Saved on
+                      <br />
+                      Regular Bra
+                    </p>
+                    <p className='summaryparam__value'>
+                      19000 CO<sub>2</sub>e{' '}
+                    </p>
+                  </div>
+
+                  {/* <div className="summaryparam">
+                <p className="summaryparam__title">
+                  Total fuel <br /> scope
+                </p>
+                <p className="summaryparam__value">1521.7 Liters </p>
+              </div> */}
+                </div>
+                <div className='summaryparams'>
+                  <div className='summaryparam sum-1 '>
+                    <p className='summaryparam__title'>
+                      Carbon Saved On <br />
+                      panty
+                    </p>
+                    <p className='summaryparam__value'>23392 </p>
+                  </div>
                   <div className='summaryparam '>
                     <p className='summaryparam__title'>Carbon Intensity</p>
                     <p className='summaryparam__value'>23392 </p>
@@ -203,6 +239,7 @@ export function Hompage() {
                     <p className='summaryparam__title'>Scrap %</p>
                     <p className='summaryparam__value'>19000 </p>
                   </div>
+
                   {/* <div className="summaryparam">
                 <p className="summaryparam__title">
                   Total fuel <br /> scope

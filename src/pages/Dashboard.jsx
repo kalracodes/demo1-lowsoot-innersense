@@ -43,67 +43,104 @@ export function Dashboard() {
               </div>
             </div>
           ) : name === 'product' ? (
-            <div
-              className='summaryparams'
-              style={{ flexWrap: 'wrap', marginTop: '1 rem' }}
-            >
-              <div className='summaryparam'>
-                <p className='product_tab_title'>Maternity bra</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
+            <>
+              <div
+                className='summaryparams'
+                style={{ flexWrap: 'wrap', marginTop: '1 rem' }}
+              >
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>Maternity bra</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>Regular bra</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam sm-param'>
+                  <p className='product_tab_title'>Panty</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam sp-param'>
+                  <p className='product_tab_title'>Loungee Long tee kind</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>Loungee dress kind</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>Maternity bra</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam sm-param'>
+                  <p className='product_tab_title'>Nighty</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>Lounge Bottom</p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
               </div>
-              <div className='summaryparam'>
-                <p className='product_tab_title'>Regular bra</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
+              <div
+                className='summaryparams'
+                style={{ flexWrap: 'wrap', marginTop: '1 rem' }}
+              >
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>
+                    Carbon Saved On <br />
+                    Maternity bra
+                  </p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam'>
+                  <p className='product_tab_title'>
+                    Carbon Saved On <br />
+                    Regular bra
+                  </p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
+                <div className='summaryparam '>
+                  <p className='product_tab_title'>
+                    Carbon Saved On <br />
+                    Panty
+                  </p>
+                  <p className='product_tab_value'>20000 units</p>
+                  <p className='product_tab_value'>
+                    50000 Co<sub>2</sub>e
+                  </p>
+                </div>
               </div>
-              <div className='summaryparam sm-param'>
-                <p className='product_tab_title'>Panty</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-              <div className='summaryparam sp-param'>
-                <p className='product_tab_title'>Loungee Long tee kind</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-              <div className='summaryparam'>
-                <p className='product_tab_title'>Loungee dress kind</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-              <div className='summaryparam'>
-                <p className='product_tab_title'>Maternity bra</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-              <div className='summaryparam sm-param'>
-                <p className='product_tab_title'>Nighty</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-              <div className='summaryparam'>
-                <p className='product_tab_title'>Lounge Bottom</p>
-                <p className='product_tab_value'>20000 units</p>
-                <p className='product_tab_value'>
-                  50000 Co<sub>2</sub>e
-                </p>
-              </div>
-            </div>
+            </>
           ) : (
             <span></span>
           )}
