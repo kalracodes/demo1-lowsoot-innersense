@@ -147,7 +147,7 @@ export function Dashboard() {
           <div className='dashgraphs__cont'>
             {name === 'travel' && <Dashgraph />}
             {name === 'cargo' && <Dashgraphc />}
-            {name === 'building' && <Dashgraphc />}
+            {name === 'Building' && <Dashgraphb />}
             {name === 'electricity' && <Dashgrape />}
             {name === 'fuel' && <Dashgrapf />}
             {name === 'commute' && <Dashgraphco />}
@@ -156,7 +156,6 @@ export function Dashboard() {
             {name === 'product' && <Dashgraphp />}
             {/* refrigeration */}
 
-            {name === 'Building' && <Dashgraphb />}
             {name === 'delivery' && <Dashgraphdel />}
           </div>
           {/* <div className="dashgraphblock">

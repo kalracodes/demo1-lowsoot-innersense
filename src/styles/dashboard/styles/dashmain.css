@@ -33,6 +33,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+body {
+  overflow-x: hidden;
+}
 .dashmain {
   background-color: var(--dashboard-page-color-fill);
   display: grid;
@@ -146,7 +149,6 @@
   font-weight: 500;
   margin-bottom: 1.8rem;
   font-weight: 600;
-  text-align: center;
 }
 .dashgraphbar__cont {
   width: 53rem;
@@ -254,4 +256,8 @@
   font-weight: 500;
   font-size: 2rem;
   line-height: 2.4rem;
+}
+.arrange {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

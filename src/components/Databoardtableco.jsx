@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
 export function Databoardtableco() {
@@ -8,16 +10,34 @@ export function Databoardtableco() {
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
   const [passengers, setPassengers] = useState('');
+  const [data, setData] = useState('');
+  const func = async () => {
+    try {
+      const headers = {
+        type: 'Road',
+        getName: true,
+      };
+      const data = await axios.get(
+        'https://emissions-calculator-grsj.onrender.com/travelFactors',
+        { params: { type: 'Road', getName: true } }
+      );
 
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    func();
+  }, []);
   const handleChange = (event) => {
     setDate(event.target.value);
   };
-
   const [lo, setLo] = useState([
     {
       date: 'Jun 25, 2022',
       comType: 'Business Commute',
-      vehicleType: '2-wheller',
+      vehicleType: 'Petrol Automobile',
       passengersNo: 4,
       distance: 200,
     },
