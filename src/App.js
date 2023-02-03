@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 // import "intro.js/introjs.css";
-import "react-toastify/dist/ReactToastify.css";
-import { Protected } from "./routes/Protected";
-import { Protpage } from "./pages/Protpage";
-import { Dashboard } from "./pages/Dashboard";
-import { Databoard } from "./pages/Databoard";
-import { Report } from "./pages/Report";
-import { Hompage } from "./pages/Hompage";
-import { Signin } from "./pages/Signin";
-import { Signup } from "./pages/Signup";
+import 'react-toastify/dist/ReactToastify.css';
+import { Protected } from './routes/Protected';
+import { Protpage } from './pages/Protpage';
+import { Dashboard } from './pages/Dashboard';
+import { Databoard } from './pages/Databoard';
+import { Report } from './pages/Report';
+import { Hompage } from './pages/Hompage';
+import { Signin } from './pages/Signin';
+import { Signup } from './pages/Signup';
 // import { useVisuals } from "./contexts/Visualcontext";
 // import { Steps } from "intro.js-react";
 function App() {
@@ -37,17 +37,17 @@ function App() {
     <>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             <Protected>
               <Hompage />
             </Protected>
           }
         />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Signin />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
+        <Route path='/login' element={<Signin />} />
         <Route
-          path="/report"
+          path='/report'
           element={
             <Protected>
               <Report />
@@ -55,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/report/:name"
+          path='/report/:name'
           element={
             <Protected>
               <Report />
@@ -63,7 +63,7 @@ function App() {
           }
         />
         <Route
-          path="/visualize"
+          path='/visualize'
           element={
             <Protected>
               <Dashboard />
@@ -71,7 +71,7 @@ function App() {
           }
         />
         <Route
-          path="/visualization/:name"
+          path='/visualization/:name'
           element={
             <Protected>
               <Dashboard />
@@ -79,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path="/databoard"
+          path='/databoard'
           element={
             <Protected>
               <Databoard />
@@ -87,7 +87,7 @@ function App() {
           }
         />
         <Route
-          path="/datainboard/:name"
+          path='/datainboard/:name'
           element={
             <Protected>
               <Databoard />
@@ -95,7 +95,7 @@ function App() {
           }
         />
         <Route
-          path="/prot"
+          path='/prot'
           element={
             <Protected>
               <Protpage />

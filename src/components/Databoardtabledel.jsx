@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 export function Databoardtabledel() {
   const [showInput, setShowInput] = useState(false);
   const [fuelType, setFuel] = useState('');
@@ -7,6 +7,7 @@ export function Databoardtabledel() {
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
   const [destintion, setDestination] = useState('');
+  const [data, setData] = useState('');
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -44,6 +45,22 @@ export function Databoardtabledel() {
       distance: 200,
     },
   ]);
+
+  useEffect(() => {
+    const func = async () => {
+      try {
+        const { All: response } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/allElectricityFactors'
+        );
+
+        setData(response);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    func();
+  }, []);
 
   return (
     <>

@@ -1,14 +1,77 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 export function Databoardtablef() {
   const [showInput, setShowInput] = useState(false);
   const [fuelType, setFuel] = useState('');
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
+  const [data, setData] = useState();
 
   const handleChange = (event) => {
     setDate(event.target.value);
   };
+
+  // const postData = async () => {
+  //   const a = data.find((item, index) => {
+  //     console.log(item);
+  //     return item.factor === source;
+  //     // if (item.factor === vehicleType) {
+  //     //   return index;
+  //     // }
+  //   });
+  //   console.log(a);
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+  //     },
+  //   };
+
+  //   if (a) {
+  //     setLoading(false);
+
+  //     console.log(a);
+
+  //     await axios.post(
+  //       'https://emissions-calculator-mc2k.onrender.com/electricityEmission',
+  //       {
+  //         energy: energy,
+  //         factorType: a.id,
+  //         date: dates,
+  //       },
+  //       config
+  //     );
+
+  //     setLo([
+  //       ...lo,
+  //       {
+  //         energy: energy,
+  //         factorType: a.id,
+  //         date: dates,
+  //       },
+  //     ]);
+  //     setDate('');
+  //     setSource('');
+  //     setEnergy('');
+  //   }
+  // };
+
+  useEffect(() => {
+    const func = async () => {
+      try {
+        const {
+          data: { All: response },
+        } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/allFuelFactors'
+        );
+        console.log(response);
+
+        setData(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    func();
+  }, []);
 
   const [lo, setLo] = useState([
     { date: 'Jun 25, 2022', fuelType: 'Petrol', distance: 200 },
@@ -89,8 +152,12 @@ export function Databoardtablef() {
                 setFuel(value);
               }}
             >
-              <option>Petrol</option>
-              <option>Diesel</option>
+              <option selected='' disabled='' value=''>
+                Choose..
+              </option>
+              {data.map((item) => {
+                return <option>{item.factor}</option>;
+              })}
             </select>
             <input
               type={'number'}

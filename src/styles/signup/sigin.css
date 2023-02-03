@@ -21,6 +21,10 @@
 }
 .sigin__side {
   background-color: var(--signin-sidepaint);
+  width: 100%;
+}
+.sigin__side img {
+  width: 750px;
 }
 /* #D8D2FC */
 .sigin__container {
@@ -130,4 +134,30 @@
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+}
+.input-login {
+  width: 400px;
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  border: 0.1px solid black;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  outline-width: 0.1rem;
+}
+.btn-submit {
+  display: block;
+  width: 400px;
+  padding: 1.2rem 1.75rem;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  background-color: #4d7cfe;
+  border: none;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: all 0.7s linear;
+}
+.btn-submit:hover {
+  background-color: rgb(66, 97, 180);
 }
