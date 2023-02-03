@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
-import { useAuth } from '../contexts/Authcontext';
+import { Authprov, useAuth } from '../contexts/Authcontext';
 export function Signin() {
   const { setIsuserloggedin, setToken } = useAuth();
   const Loginschema = Yup.object().shape({
@@ -16,11 +16,35 @@ export function Signin() {
       .required('Required'),
   });
   const [loader, setLoader] = useState(false);
-  const navigate = useNavigate();
+
   const { state } = useLocation();
   const [email, setEMail] = useState();
   const [pass, setPass] = useState();
-  const from = state?.from?.pathname || '/';
+  const [log, setLog] = useState(true);
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/`;
+    navigate(path);
+  };
+  const check = async (e) => {
+    e.preventDefault();
+    console.log('hi');
+    const {
+      data: { token },
+    } = await axios.post(
+      'https://emissions-calculator-mc2k.onrender.com/login',
+      {
+        email: email,
+        password: pass,
+      }
+    );
+    console.log(token);
+    if (token) {
+      setToken(token);
+      setIsuserloggedin(true);
+      routeChange();
+    }
+  };
   return (
     <>
       <div>
@@ -55,7 +79,7 @@ export function Signin() {
                 className='input-login'
                 placeholder='Passsword'
               />
-              <button type='submit' className='btn-submit'>
+              <button type='submit' className='btn-submit' onClick={check}>
                 Log In
               </button>
             </form>

@@ -49,7 +49,9 @@ export function Databoardtabledel() {
   useEffect(() => {
     const func = async () => {
       try {
-        const { All: response } = await axios.get(
+        const {
+          data: { All: response },
+        } = await axios.get(
           'https://emissions-calculator-mc2k.onrender.com/allElectricityFactors'
         );
 
@@ -59,7 +61,35 @@ export function Databoardtabledel() {
         console.log(err);
       }
     };
+
+    async function func2() {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+          },
+        };
+
+        // const bodyParameters = {
+        //   key: 'value',
+        // };
+
+        const { data: resp } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/electricityEmissions',
+
+          config
+        );
+        console.log(resp);
+        if (resp) {
+          setLoading(false);
+          setLo(resp);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     func();
+    func2();
   }, []);
 
   return (
