@@ -92,7 +92,7 @@
   font-family: 'Inter', sans-serif;
 }
 .summaryparam .summaryparam__value {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 900;
   align-self: flex-start;
 }
@@ -112,7 +112,7 @@
   gap: 1rem;
 }
 .dashparameter .dashparameter___textvalue {
-  font-size: 30px;
+  font-size: 16.7px;
 }
 .head-content,
 .bg {

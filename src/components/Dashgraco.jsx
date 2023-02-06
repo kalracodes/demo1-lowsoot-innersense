@@ -4,33 +4,79 @@ import { chartarray } from '../sampledata/data';
 import { Areagraph } from './Areagraph';
 import { color1 } from '../color';
 import { Linegraph } from './Linegraph';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 export function Dashgraphco() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  useEffect(() => {
+    async function func2() {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzU1MTAwODIsImV4cCI6MTY3NTU5NjQ4Mn0.4I4tFb7rM4IH2X6Ipif7UyzlwcqsYCA1t4E5rULZZ_o`,
+          },
+        };
+
+        // const bodyParameters = {
+        //   key: 'value',
+        // };
+
+        const { data } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/visualisation',
+          config
+        );
+        console.log(data);
+        if (data) {
+          setData(data);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    func2();
+  }, []);
   return (
-    <div className='dashgraphs arrange'>
-      <div className='dashgraphlinecont'>
+    <>
+      {loading || (
+        <div className='dashgraphs arrange'>
+          {/* <div className='dashgraphlinecont'>
         <h2 className='dashgraph__header'>Amount of fuel</h2>
         <div className='dashgraphline__cont'>
           <Linegraph vizarray={chartarray} />
         </div>
-      </div>
-      <div className='dashgraphbarcont'>
-        <h2 className='dashgraph__header'>Total distance travelled</h2>
-        <div className='dashgraphbar__cont'>
-          <Bargraph vizarray={chartarray} colorvalue={color1} />
+      </div> */}
+          <div className='dashgraphbarcont'>
+            <h2 className='dashgraph__header'>Total distance travelled</h2>
+            <div className='dashgraphbar__cont'>
+              <Bargraph
+                vizarray={data['TravelDistance'].Road}
+                colorvalue={color1}
+              />
+            </div>
+          </div>
+          <div className='dashgraphlinecont'>
+            <h2 className='dashgraph__header'>Emission by Business commute</h2>
+            <div className='dashgraphline__cont'>
+              <Areagraph
+                vizarray={data['BusinessCommuteEmissions'].Road}
+                colorvalue={color1}
+              />
+            </div>
+          </div>
+          <div className='dashgraphlinecont'>
+            <h2 className='dashgraph__header'>Emission by Employee Commute</h2>
+            <div className='dashgraphline__cont'>
+              <Areagraph
+                vizarray={data['EmployeeCommuteEmissions'].Road}
+                colorvalue={color1}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='dashgraphlinecont'>
-        <h2 className='dashgraph__header'>Emission by Business commute</h2>
-        <div className='dashgraphline__cont'>
-          <Areagraph vizarray={chartarray} colorvalue={color1} />
-        </div>
-      </div>
-      <div className='dashgraphlinecont'>
-        <h2 className='dashgraph__header'>Emission by Employee Commute</h2>
-        <div className='dashgraphline__cont'>
-          <Areagraph vizarray={chartarray} colorvalue={color1} />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

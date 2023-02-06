@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Authprov, useAuth } from '../contexts/Authcontext';
+import { redirect } from 'react-router-dom';
 export function Databoardtablec() {
   const [showInput, setShowInput] = useState(false);
   const [fuelType, setFuel] = useState('');
@@ -14,11 +16,12 @@ export function Databoardtablec() {
   const handleChange = (event) => {
     setDate(event.target.value);
   };
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
 
   const postData = async () => {
     const config = {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+        Authorization: `Bearer ${token}`,
       },
     };
     setLoading(true);
@@ -33,33 +36,36 @@ export function Databoardtablec() {
     console.log(c);
     if (c) {
       setLoading(false);
+      try {
+        await axios.post(
+          'https://emissions-calculator-mc2k.onrender.com/cargoEmission',
+          {
+            weight: wt,
+            distance: distance,
+            travelBy: 'Road',
+            factorType: c.id,
+            date: dates,
+          },
+          config
+        );
 
-      await axios.post(
-        'https://emissions-calculator-mc2k.onrender.com/cargoEmission',
-        {
-          weight: wt,
-          distance: distance,
-          travelBy: 'Road',
-          factorType: c.id,
-          date: dates,
-        },
-        config
-      );
-
-      setLo([
-        ...lo,
-        {
-          weight: wt,
-          distance: distance,
-          travelBy: 'Road',
-          factorType: c.id,
-          date: dates,
-        },
-      ]);
-      setDate('');
-      setDistance('');
-      setWt('');
-      setVehicle('');
+        setLo([
+          ...lo,
+          {
+            weight: wt,
+            distance: distance,
+            travelBy: 'Road',
+            factorType: c.id,
+            date: dates,
+          },
+        ]);
+        setDate('');
+        setDistance('');
+        setWt('');
+        setVehicle('');
+      } catch {
+        return redirect('/login');
+      }
     }
   };
   useEffect(() => {
@@ -75,6 +81,7 @@ export function Databoardtablec() {
         console.log(response);
       } catch (err) {
         console.log(err);
+        return redirect('/login');
       }
     };
 
@@ -82,7 +89,7 @@ export function Databoardtablec() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -95,6 +102,7 @@ export function Databoardtablec() {
 
           config
         );
+        console.log(token);
         console.log(resp);
         if (resp) {
           console.log(resp);
@@ -103,6 +111,7 @@ export function Databoardtablec() {
         }
       } catch (err) {
         console.log(err);
+        return redirect('/login');
       }
     }
     func();

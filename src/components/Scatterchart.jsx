@@ -6,14 +6,14 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 // import { useVisuals } from "../contexts/Visualcontext";
 // import { getmonthno } from "../functions/setmonthnum";
 
 export function Scatterchartgraph(params) {
-  const co2 = " CO2E";
+  const co2 = ' CO2E';
   const { colorvalue } = params;
-  const scatterfill = colorvalue ? colorvalue : "#8884d8";
+  const scatterfill = colorvalue ? colorvalue : '#8884d8';
   //   const { vizarray } = params;
   //   const { dateval, enddateval } = useVisuals();
   //   const monthno = Number(dateval.slice(5, 7));
@@ -31,7 +31,7 @@ export function Scatterchartgraph(params) {
   ];
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width='100%' height='100%'>
       <ScatterChart
         width={400}
         height={400}
@@ -43,27 +43,33 @@ export function Scatterchartgraph(params) {
         }}
       >
         <CartesianGrid />
-        <XAxis type="number" dataKey="x" name="stature" unit=" CO2E" style={{
-            fontSize: "1rem",
-            fontWeight: "400",
-            lineHeight: "1.5rem",
-            fontFamily: "Inter",
-          }} />
+        <XAxis
+          type='number'
+          dataKey='x'
+          name='stature'
+          unit=' CO2E'
+          style={{
+            fontSize: '1rem',
+            fontWeight: '400',
+            lineHeight: '1.5rem',
+            fontFamily: 'Inter',
+          }}
+        />
         <YAxis
           style={{
-            fontSize: "1rem",
-            fontWeight: "400",
-            lineHeight: "1.5rem",
-            fontFamily: "Inter",
+            fontSize: '1rem',
+            fontWeight: '400',
+            lineHeight: '1.5rem',
+            fontFamily: 'Inter',
           }}
           axisLine={false}
-          type="number"
-          dataKey="y"
-          name="weight"
+          type='number'
+          dataKey='y'
+          name='weight'
           unit={co2}
         />
-        <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        <Scatter name="emmision" data={data} fill={scatterfill} />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+        <Scatter name='emmision' data={data} fill={scatterfill} />
       </ScatterChart>
     </ResponsiveContainer>
   );

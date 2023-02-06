@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import img from '../assets/ESG 1.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 import { Authprov, useAuth } from '../contexts/Authcontext';
 export function Signin() {
-  const { setIsuserloggedin, setToken } = useAuth();
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const Loginschema = Yup.object().shape({
     companymail: Yup.string()
       .email('Invalid email address')
@@ -21,14 +21,15 @@ export function Signin() {
   const [email, setEMail] = useState();
   const [pass, setPass] = useState();
   const [log, setLog] = useState(true);
+  const [lS, setLS] = useState([]);
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/`;
     navigate(path);
   };
+
   const check = async (e) => {
     e.preventDefault();
-    console.log('hi');
     const {
       data: { token },
     } = await axios.post(
@@ -38,13 +39,19 @@ export function Signin() {
         password: pass,
       }
     );
-    console.log(token);
+
+    // console.log(token);
     if (token) {
+      localStorage.setItem(
+        'data',
+        JSON.stringify({ clienttoken: token, loginstatus: true })
+      );
       setToken(token);
       setIsuserloggedin(true);
       routeChange();
     }
   };
+
   return (
     <>
       <div>

@@ -1,6 +1,6 @@
 import { ResponsiveContainer, PieChart, Pie } from 'recharts';
 
-export function Piegraphsumblock() {
+export function Piegraphsumblock({ data }) {
   const datax = [
     { name: 'Maternity Bra', value: 23, fill: '#2085ec' },
     { name: 'Regular Bra', value: 25, fill: '#72b4eb' },

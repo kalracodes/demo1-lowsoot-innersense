@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useAuth } from '../contexts/Authcontext';
 export function Databoardtableco() {
-  const { token } = useAuth();
   const [showInput, setShowInput] = useState(false);
   const [comType, setCom] = useState('');
   const [fuelType, setFuel] = useState('');
@@ -14,50 +13,54 @@ export function Databoardtableco() {
   const [data, setData] = useState('');
   const [lo, setLo] = useState();
   const [loading, setLoading] = useState(true);
-  const [c, setC] = useState();
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const postData = async () => {
     const config = {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+        Authorization: `Bearer ${token}`,
       },
     };
     setLoading(true);
-    setC(
-      data.find((item, index) => {
+    try {
+      const c = data.find((item, index) => {
         return item.factor === vehicleType;
         // if (item.factor === vehicleType) {
         //   return index;
         // }
-      })
-    );
-    console.log(c);
-    if (c) {
-      setLoading(false);
+      });
 
-      await axios.post(
-        'https://emissions-calculator-mc2k.onrender.com/travelEmission',
-        {
-          distance: distance,
-          travelBy: 'Road',
-          factorType: c.id,
-          passengers: passengers,
-          travelType: comType,
-          date: dates,
-        },
-        config
-      );
+      console.log(c);
+      if (c) {
+        setLoading(false);
 
-      setLo([
-        ...lo,
-        {
-          distance: distance,
-          travelBy: 'Road',
-          factorType: c.id,
-          passengers: passengers,
-          travelType: comType,
-          date: dates,
-        },
-      ]);
+        await axios.post(
+          'https://emissions-calculator-mc2k.onrender.com/travelEmission',
+          {
+            distance: distance,
+            travelBy: 'Road',
+            factorType: c.id,
+            passengers: passengers,
+            travelType: comType,
+            date: dates,
+          },
+          config
+        );
+
+        setLo([
+          ...lo,
+          {
+            distance: distance,
+            travelBy: 'Road',
+            factorType: c.id,
+            passengers: passengers,
+            travelType: comType,
+            date: dates,
+          },
+        ]);
+      }
+    } catch (err) {
+      console.log(err);
+      setIsuserloggedin(false);
     }
   };
   useEffect(() => {
@@ -72,6 +75,7 @@ export function Databoardtableco() {
         setData(response);
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     };
 
@@ -79,7 +83,7 @@ export function Databoardtableco() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -99,6 +103,7 @@ export function Databoardtableco() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func();

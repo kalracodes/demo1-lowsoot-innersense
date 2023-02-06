@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react';
 const Authcontext = createContext();
 export function Authprov({ children }) {
   const { clienttoken, loginstatus } = JSON.parse(
-    localStorage.getItem('login')
+    localStorage.getItem('data')
   ) || {
     clienttoken: null,
     loginstatus: false,
