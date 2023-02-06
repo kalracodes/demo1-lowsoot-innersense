@@ -90,298 +90,330 @@ export function Hompage() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func2();
   }, []);
   return (
     <>
-      {loading || (
-        <div className='dcontainer'>
-          <Sidenavv3 />
-          <div className='homemainv2'>
-            <Topbarv3 />
-            <div className='homemaincontentv2'>
-              <Summaryend
-                generatePDF={generatePDF}
-                componentRef={componentRef}
-              />
-              <div
-                ref={componentRef}
-                id='report__datacontainer'
-                style={{ padding: '1.5rem', marginTop: '-4rem' }}
-              >
-                <div className='head-content'>
-                  <h1 id='introjs__1' className='homemainheaderv2'>
-                    <span className='introjs__1'>Summary</span>
-                  </h1>
-                </div>
-                <>
-                  <div className='bg'>
-                    <Dashparameters />
-                    <div className='summaryparams'>
-                      <div className='summaryparam sum-1'>
-                        <p className='summaryparam__title'>
-                          Total Electricity consumed
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.totalElectricityEmission} KWh{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title'>
-                          Total Business
-                          <br />
-                          Commuting
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.totalBusinessCommuteDistance} Kms{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title'>
-                          Total Employees
-                          <br /> Commuting
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.totalEmployeeCommuteDistance} Kms{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title'>
-                          Carbon Emission on
-                          <br />
-                          Maternity Bra
-                          <br />
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Maternity Bra'].emissions}CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      {/* <div className="summaryparam">
-                <p className="summaryparam__title">
-                  Total fuel <br /> scope
-                </p>
-                <p className="summaryparam__value">1521.7 Liters </p>
-              </div> */}
-                    </div>
-                    {/* Part 2 below */}
-                    <div className='summaryparams'>
-                      <div className='summaryparam sum-1'>
-                        <p className='summaryparam__title'>
-                          Carbon Emission on
-                          <br />
-                          Regular Bra
-                          <br />
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Regular Bra'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title'>
-                          Carbon Emission on
-                          <br />
-                          Panty
-                          <br />
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Panty'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-
-                      <div className='summaryparam '>
-                        <p className='summaryparam__title smallest'>
-                          Carbon Emission on
-                          <br />
-                          Loungee Long tee kind
-                          <br />
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Lounge Long Tee Kind'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam '>
-                        <p className='summaryparam__title '>
-                          Carbon Emission on
-                          <br />
-                          Loungee Dress kind
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Lounge Dress Kind'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      {/* <div className="summaryparam">
-                <p className="summaryparam__title">
-                  Total fuel <br /> scope
-                </p>
-                <p className="summaryparam__value">1521.7 Liters </p>
-              </div> */}
-                    </div>
-                    {/* Part 3 below */}
-                    <div className='summaryparams'>
-                      <div className='summaryparam sum-1'>
-                        <p className='summaryparam__title '>
-                          Carbon Emission on
-                          <br />
-                          Nighty
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Nighty'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title '>
-                          Carbon Emission on
-                          <br />
-                          Lounge Bottom
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Lounge Bottom'].emissions} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title '>
-                          Carbon Saved on
-                          <br />
-                          Maternity Bra
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Maternity Bra'].saved} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title '>
-                          Carbon Saved on
-                          <br />
-                          Regular Bra
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Regular Bra'].saved} CO<sub>2</sub>e{' '}
-                        </p>
-                      </div>
-
-                      {/* <div className="summaryparam">
-                <p className="summaryparam__title">
-                  Total fuel <br /> scope
-                </p>
-                <p className="summaryparam__value">1521.7 Liters </p>
-              </div> */}
-                    </div>
-                    <div className='summaryparams'>
-                      <div className='summaryparam sum-1 '>
-                        <p className='summaryparam__title'>
-                          Carbon Saved On <br />
-                          panty
-                        </p>
-                        <p className='summaryparam__value'>
-                          {data.Product['Panty'].saved} CO
-                          <sub>2</sub>e{' '}
-                        </p>
-                      </div>
-                      <div className='summaryparam '>
-                        <p className='summaryparam__title'>Carbon Intensity</p>
-                        <p className='summaryparam__value'>23392 </p>
-                      </div>
-                      <div className='summaryparam'>
-                        <p className='summaryparam__title'>Scrap %</p>
-                        <p className='summaryparam__value'>19000 </p>
-                      </div>
-
-                      {/* <div className="summaryparam">
-                <p className="summaryparam__title">
-                  Total fuel <br /> scope
-                </p>
-                <p className="summaryparam__value">1521.7 Liters </p>
-              </div> */}
-                    </div>
-                    <div className='summaryparams sum-last'></div>
+      {loading ? (
+        <>
+          <div className='main-load'>
+            <h1>Loading</h1>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className='dcontainer'>
+            <Sidenavv3 />
+            <div className='homemainv2'>
+              <Topbarv3 />
+              <div className='homemaincontentv2'>
+                <Summaryend
+                  generatePDF={generatePDF}
+                  componentRef={componentRef}
+                />
+                <div
+                  ref={componentRef}
+                  id='report__datacontainer'
+                  style={{ padding: '1.5rem', marginTop: '-4rem' }}
+                >
+                  <div className='head-content'>
+                    <h1 id='introjs__1' className='homemainheaderv2'>
+                      <span className='introjs__1'>Summary</span>
+                    </h1>
                   </div>
-                  <br />
-                  <br />
-                  <br />
-                  <div className='datefilters'>
-                    <h3 className='datefilters__head'>Date Filters</h3>
-                    <ThemeProvider theme={theme}>
-                      <CssBaseline />
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DesktopDatePicker
-                          minDate='2022-1-1'
-                          maxDate='2022-12-31'
-                          label='Start date'
-                          inputFormat='MM/DD/YYYY'
-                          value={dayjs(dateval)}
-                          onChange={(newValue) => {
-                            const monthkey = JSON.stringify(newValue['$M'] + 1);
-                            const monthkeystring =
-                              monthkey.length === 1 ? `0${monthkey}` : monthkey;
-                            setDateval(
-                              `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
-                            );
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
+                  <>
+                    <div className='bg'>
+                      <Dashparameters />
+                      <div className='summaryparams'>
+                        <div className='summaryparam sum-1'>
+                          <p className='summaryparam__title'>
+                            Total Electricity consumed
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.totalElectricityEmission} KWh{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title'>
+                            Total Business
+                            <br />
+                            Commuting
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.totalBusinessCommuteDistance} Kms{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title'>
+                            Total Employees
+                            <br /> Commuting
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.totalEmployeeCommuteDistance} Kms{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title'>
+                            Carbon Emission on
+                            <br />
+                            Maternity Bra
+                            <br />
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Maternity Bra'].emissions}CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        {/* <div className="summaryparam">
+                <p className="summaryparam__title">
+                  Total fuel <br /> scope
+                </p>
+                <p className="summaryparam__value">1521.7 Liters </p>
+              </div> */}
+                      </div>
+                      {/* Part 2 below */}
+                      <div className='summaryparams'>
+                        <div className='summaryparam sum-1'>
+                          <p className='summaryparam__title'>
+                            Carbon Emission on
+                            <br />
+                            Regular Bra
+                            <br />
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Regular Bra'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title'>
+                            Carbon Emission on
+                            <br />
+                            Panty
+                            <br />
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Panty'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+
+                        <div className='summaryparam '>
+                          <p className='summaryparam__title smallest'>
+                            Carbon Emission on
+                            <br />
+                            Loungee Long tee kind
+                            <br />
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Lounge Long Tee Kind'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam '>
+                          <p className='summaryparam__title '>
+                            Carbon Emission on
+                            <br />
+                            Loungee Dress kind
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Lounge Dress Kind'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        {/* <div className="summaryparam">
+                <p className="summaryparam__title">
+                  Total fuel <br /> scope
+                </p>
+                <p className="summaryparam__value">1521.7 Liters </p>
+              </div> */}
+                      </div>
+                      {/* Part 3 below */}
+                      <div className='summaryparams'>
+                        <div className='summaryparam sum-1'>
+                          <p className='summaryparam__title '>
+                            Carbon Emission on
+                            <br />
+                            Nighty
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Nighty'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title '>
+                            Carbon Emission on
+                            <br />
+                            Lounge Bottom
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Lounge Bottom'].emissions} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title '>
+                            Carbon Saved on
+                            <br />
+                            Maternity Bra
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Maternity Bra'].saved} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title '>
+                            Carbon Saved on
+                            <br />
+                            Regular Bra
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Regular Bra'].saved} CO<sub>2</sub>e{' '}
+                          </p>
+                        </div>
+
+                        {/* <div className="summaryparam">
+                <p className="summaryparam__title">
+                  Total fuel <br /> scope
+                </p>
+                <p className="summaryparam__value">1521.7 Liters </p>
+              </div> */}
+                      </div>
+                      <div className='summaryparams'>
+                        <div className='summaryparam sum-1 '>
+                          <p className='summaryparam__title'>
+                            Carbon Saved On <br />
+                            panty
+                          </p>
+                          <p className='summaryparam__value'>
+                            {data.Product['Panty'].saved} CO
+                            <sub>2</sub>e{' '}
+                          </p>
+                        </div>
+                        <div className='summaryparam '>
+                          <p className='summaryparam__title'>
+                            Carbon Intensity
+                          </p>
+                          <p className='summaryparam__value'>23392 </p>
+                        </div>
+                        <div className='summaryparam'>
+                          <p className='summaryparam__title'>Scrap %</p>
+                          <p className='summaryparam__value'>19000 </p>
+                        </div>
+
+                        {/* <div className="summaryparam">
+                <p className="summaryparam__title">
+                  Total fuel <br /> scope
+                </p>
+                <p className="summaryparam__value">1521.7 Liters </p>
+              </div> */}
+                      </div>
+                      <div className='summaryparams sum-last'></div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div className='datefilters'>
+                      <h3 className='datefilters__head'>Date Filters</h3>
+                      <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DesktopDatePicker
+                            minDate='2022-1-1'
+                            maxDate='2022-12-31'
+                            label='Start date'
+                            inputFormat='MM/DD/YYYY'
+                            value={dayjs(dateval)}
+                            onChange={(newValue) => {
+                              const monthkey = JSON.stringify(
+                                newValue['$M'] + 1
+                              );
+                              const monthkeystring =
+                                monthkey.length === 1
+                                  ? `0${monthkey}`
+                                  : monthkey;
+                              setDateval(
+                                `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
+                              );
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                          &nbsp;&nbsp;&nbsp;
+                          <DesktopDatePicker
+                            minDate='2022-1-1'
+                            maxDate='2022-12-31'
+                            label='End date'
+                            inputFormat='MM/DD/YYYY'
+                            value={dayjs(enddateval)}
+                            onChange={(newValue) => {
+                              const monthkey = JSON.stringify(
+                                newValue['$M'] + 1
+                              );
+                              const monthkeystring =
+                                monthkey.length === 1
+                                  ? `0${monthkey}`
+                                  : monthkey;
+                              setEnddateval(
+                                `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
+                              );
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                        </LocalizationProvider>
+                      </ThemeProvider>
+                    </div>
+
+                    <div className='homevizgraph__cont'>
+                      <div className='summarygrid'>
+                        {console.log(data['ProductGraph'])}
+                        <Piegraphsumblock
+                          data={data['ProductGraph']
+                            .filter((item) => {
+                              // console.log(item.name);
+                              return item.saved != 0;
+                            })
+                            .map((item) => {
+                              return {
+                                name: item.name,
+                                value: parseInt(item.saved),
+                                fill: item.color,
+                              };
+                            })}
                         />
-                        &nbsp;&nbsp;&nbsp;
-                        <DesktopDatePicker
-                          minDate='2022-1-1'
-                          maxDate='2022-12-31'
-                          label='End date'
-                          inputFormat='MM/DD/YYYY'
-                          value={dayjs(enddateval)}
-                          onChange={(newValue) => {
-                            const monthkey = JSON.stringify(newValue['$M'] + 1);
-                            const monthkeystring =
-                              monthkey.length === 1 ? `0${monthkey}` : monthkey;
-                            setEnddateval(
-                              `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
-                            );
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
+
+                        <Linegraphblock
+                          vizarray={data['BusinessCommuteEmissions'].Road}
+                          graphname={'Business Commute'}
+                          colorvalue={color1}
                         />
-                      </LocalizationProvider>
-                    </ThemeProvider>
-                  </div>
 
-                  <div className='homevizgraph__cont'>
-                    <div className='summarygrid'>
-                      <Piegraphsumblock />
+                        <Bargraphblock
+                          vizarray={data['EmployeeCommuteEmissions'].Road}
+                          graphname={'Employee Commute'}
+                          colorvalue={color1}
+                        />
 
-                      <Linegraphblock
-                        vizarray={data['BusinessCommuteEmissions'].Road}
-                        graphname={'Business Commute'}
-                        colorvalue={color1}
-                      />
-
-                      <Bargraphblock
-                        vizarray={data['EmployeeCommuteEmissions'].Road}
-                        graphname={'Employee Commute'}
-                        colorvalue={color1}
-                      />
-
-                      <Areagraphblock
-                        vizarray={data['Electricity'].Electricity}
-                        graphname={'Electricty'}
-                        colorvalue={color1}
-                      />
-                      {/* <Scattergraphblock
+                        <Areagraphblock
+                          vizarray={data['Electricity'].Electricity}
+                          graphname={'Electricty'}
+                          colorvalue={color1}
+                        />
+                        {/* <Scattergraphblock
                         vizarray={chartarray}
                         graphname={'Air Cargo'}
                         colorvalue={color1}
                       /> */}
-                      <Scattergraphblock
-                        vizarray={chartarray}
-                        graphname={'Road Cargo'}
-                        colorvalue={color1}
-                      />
-                      {/* <Bargraphblock
+                        <Scattergraphblock
+                          vizarray={chartarray}
+                          graphname={'Road Cargo'}
+                          colorvalue={color1}
+                        />
+                        {/* <Bargraphblock
                         vizarray={chartarray}
                         graphname={'Building Space Consumed'}
                         colorvalue={color2}
@@ -391,24 +423,25 @@ export function Hompage() {
                         graphname={'Warehouse Space'}
                         colorvalue={color3}
                       /> */}
-                      <Bargraphblock
-                        vizarray={chartarray}
-                        graphname={'Delivery'}
-                        colorvalue={color3}
-                      />
-                      <Bargraphblock
-                        vizarray={chartarray}
-                        graphname={'Fuel Emission'}
-                        colorvalue={color3}
-                      />
+                        <Bargraphblock
+                          vizarray={chartarray}
+                          graphname={'Delivery'}
+                          colorvalue={color3}
+                        />
+                        <Bargraphblock
+                          vizarray={chartarray}
+                          graphname={'Fuel Emission'}
+                          colorvalue={color3}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </>
+                  </>
+                </div>
+                <Lowsootfooter />
               </div>
-              <Lowsootfooter />
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

@@ -13,53 +13,57 @@ export function Databoardtabledel() {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState();
   const [items, setItems] = useState();
-  const { token, isuserloggedin } = useAuth();
   const handleChange = (event) => {
     setDate(event.target.value);
   };
-
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const postData = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
-      },
-    };
-    setLoading(true);
-    console.log(data);
-    const c = data.find((item, index) => {
-      return item.factor === vehicleType;
-      // if (item.factor === vehicleType) {
-      //   return index;
-      // }
-    });
-
-    console.log(c);
-    if (c) {
-      setLoading(false);
-
-      await axios.post(
-        'https://emissions-calculator-mc2k.onrender.com/deliveryEmission',
-        {
-          numberOfItems: 1000,
-          date: dates,
-          destinationCity: 'Jaipur',
-          factorType: 1,
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        config
-      );
+      };
+      setLoading(true);
+      console.log(data);
+      const c = data.find((item, index) => {
+        return item.factor === vehicleType;
+        // if (item.factor === vehicleType) {
+        //   return index;
+        // }
+      });
 
-      setLo([
-        ...lo,
-        {
-          numberOfItems: 1000,
-          date: dates,
-          destinationCity: 'Jaipur',
-          factorType: 1,
-        },
-      ]);
-      setDate('');
-      setDistance('');
-      setVehicle('');
+      console.log(c);
+      if (c) {
+        setLoading(false);
+
+        await axios.post(
+          'https://emissions-calculator-mc2k.onrender.com/deliveryEmission',
+          {
+            numberOfItems: items,
+            date: dates,
+            destinationCity: destintion,
+            factorType: c.id,
+          },
+          config
+        );
+
+        setLo([
+          ...lo,
+          {
+            numberOfItems: items,
+            date: dates,
+            destinationCity: destintion,
+            factorType: c.id,
+          },
+        ]);
+        setDate('');
+        setDistance('');
+        setVehicle('');
+      }
+    } catch (err) {
+      console.log(err);
+      setIsuserloggedin(false);
     }
   };
 
@@ -68,7 +72,7 @@ export function Databoardtabledel() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzU1MTAwODIsImV4cCI6MTY3NTU5NjQ4Mn0.4I4tFb7rM4IH2X6Ipif7UyzlwcqsYCA1t4E5rULZZ_o`,
+            Authorization: `Bearer ${token}`,
           },
         };
         const {
@@ -82,6 +86,7 @@ export function Databoardtabledel() {
         console.log(response);
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     };
 
@@ -89,7 +94,7 @@ export function Databoardtabledel() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzU1MTAwODIsImV4cCI6MTY3NTU5NjQ4Mn0.4I4tFb7rM4IH2X6Ipif7UyzlwcqsYCA1t4E5rULZZ_o`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -109,6 +114,7 @@ export function Databoardtabledel() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func();
@@ -148,11 +154,15 @@ export function Databoardtabledel() {
                   <tr key={idx} className='databoardtable__tabletr'>
                     <td className='databoardtable__tabletd'>{item.date}</td>
                     <td className='databoardtable__tabletd'>
-                      {item.vehicleType}
+                      {data[item.factorType - 1].factor}
                     </td>
-                    <td className='databoardtable__tabletd'>{item.dest}</td>
+                    <td className='databoardtable__tabletd'>{item.type}</td>
+
                     <td className='databoardtable__tabletd'>
-                      {item.distance}&nbsp;kms
+                      {item.destinationCity}
+                    </td>
+                    <td className='databoardtable__tabletd'>
+                      {item.numberOfItems}
                     </td>
                   </tr>
                 );
@@ -188,7 +198,7 @@ export function Databoardtabledel() {
                     appearance: 'none',
                     border: 'solid 0.5px',
                     padding: '8px',
-                    margin: '0px 8px 16px 8px',
+                    margin: '0rem 8px 0px 10rem',
                     borderRadius: '4px',
                   }}
                   required={true}
@@ -200,9 +210,9 @@ export function Databoardtabledel() {
                   <option selected='' disabled='' value=''>
                     Choose...
                   </option>
-                  <option>2-Wheeler</option>
-                  <option>3-Wheeler</option>
-                  <option>4-Wheeler</option>
+                  {data.map((auto) => {
+                    return <option value={auto.factor}>{auto.factor}</option>;
+                  })}
                 </select>
 
                 <select
@@ -212,7 +222,7 @@ export function Databoardtabledel() {
                     appearance: 'none',
                     border: 'solid 0.5px',
                     padding: '8px',
-                    margin: '0 0 0 25rem',
+                    margin: '0 0 0 5rem',
                     borderRadius: '4px',
                   }}
                   required={true}
@@ -241,6 +251,7 @@ export function Databoardtabledel() {
                     border: 'solid 0.5px',
                     padding: '8px',
                     borderRadius: '4px',
+                    marginLeft: '5rem',
                   }}
                   required={true}
                   onChange={(e) => {
@@ -250,20 +261,21 @@ export function Databoardtabledel() {
 
                 <input
                   type={'number'}
-                  value={distance}
+                  value={items}
                   style={{
                     appearance: 'none',
                     border: 'solid 0.5px',
                     padding: '8px',
                     borderRadius: '4px',
+                    margin: '0 2rem',
                   }}
                   required={true}
                   onChange={(e) => {
                     const value = parseInt(e.target.value);
                     if (value > -1) {
-                      setDistance(value);
+                      setItems(value);
                     } else if (e.target.value === '') {
-                      setDistance('');
+                      setItems('');
                     }
                   }}
                 />
@@ -289,8 +301,8 @@ export function Databoardtabledel() {
               </tr>
                 `*/
                     if (
-                      distance > -1 &&
-                      distance !== '' &&
+                      items > -1 &&
+                      items !== '' &&
                       dates !== '' &&
                       vehicleType !== '' &&
                       destintion !== ''

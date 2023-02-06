@@ -139,3 +139,9 @@
 text {
   font-weight: 700;
 }
+.main-load {
+  font-size: 4rem;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+}

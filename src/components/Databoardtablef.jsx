@@ -1,59 +1,57 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/Authcontext';
 export function Databoardtablef() {
   const [showInput, setShowInput] = useState(false);
   const [fuelType, setFuel] = useState('');
-  const [distance, setDistance] = useState('');
+  const [volume, setVolume] = useState('');
   const [dates, setDate] = useState('');
   const [data, setData] = useState();
-
+  const [loading, setLoading] = useState(true);
   const handleChange = (event) => {
     setDate(event.target.value);
   };
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
+  const postData = async () => {
+    const a = data.find((item, index) => {
+      console.log(item);
+      return item.factor === fuelType;
+    });
+    console.log(a);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-  // const postData = async () => {
-  //   const a = data.find((item, index) => {
-  //     console.log(item);
-  //     return item.factor === source;
-  //     // if (item.factor === vehicleType) {
-  //     //   return index;
-  //     // }
-  //   });
-  //   console.log(a);
-  //   const config = {
-  //     headers: {
-  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
-  //     },
-  //   };
+    if (a) {
+      setLoading(false);
 
-  //   if (a) {
-  //     setLoading(false);
+      console.log(a);
 
-  //     console.log(a);
+      await axios.post(
+        'https://emissions-calculator-mc2k.onrender.com/electricityEmission',
+        {
+          date: dates,
+          factorType: a.id,
+          volume: volume,
+        },
+        config
+      );
 
-  //     await axios.post(
-  //       'https://emissions-calculator-mc2k.onrender.com/electricityEmission',
-  //       {
-  //         energy: energy,
-  //         factorType: a.id,
-  //         date: dates,
-  //       },
-  //       config
-  //     );
-
-  //     setLo([
-  //       ...lo,
-  //       {
-  //         energy: energy,
-  //         factorType: a.id,
-  //         date: dates,
-  //       },
-  //     ]);
-  //     setDate('');
-  //     setSource('');
-  //     setEnergy('');
-  //   }
-  // };
+      setLo([
+        ...lo,
+        {
+          date: dates,
+          factorType: a.id,
+          volume: volume,
+        },
+      ]);
+      setDate('');
+      setVolume('');
+      setFuel('');
+    }
+  };
 
   useEffect(() => {
     const func = async () => {
@@ -68,18 +66,41 @@ export function Databoardtablef() {
         setData(response);
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     };
+    async function func2() {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        // const bodyParameters = {
+        //   key: 'value',
+        // };
+
+        const { data: resp } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/fuelEmissions',
+
+          config
+        );
+        console.log(resp);
+        if (resp) {
+          setLoading(false);
+          setLo(resp);
+        }
+      } catch (err) {
+        console.log(err);
+        setIsuserloggedin(false);
+      }
+    }
     func();
+    func2();
   }, []);
 
-  const [lo, setLo] = useState([
-    { date: 'Jun 25, 2022', fuelType: 'Petrol', distance: 200 },
-    { date: 'Jun 25, 2022', fuelType: 'Petrol', distance: 200 },
-    { date: 'Jun 26, 2022', fuelType: 'Petrol', distance: 200 },
-    { date: 'Jun 27, 2022', fuelType: 'Petrol', distance: 200 },
-    { date: 'Jun 28, 2022', fuelType: 'Petrol', distance: 200 },
-  ]);
+  const [lo, setLo] = useState([]);
 
   return (
     <>
@@ -96,7 +117,7 @@ export function Databoardtablef() {
               Type of Fuel
             </th>
             <th className='databoardtable__theadth' scope='col'>
-              Quantity
+              Volume
             </th>
           </tr>
         </thead>
@@ -105,8 +126,10 @@ export function Databoardtablef() {
             return (
               <tr key={idx} className='databoardtable__tabletr'>
                 <td className='databoardtable__tabletd'>{item.date}</td>
-                <td className='databoardtable__tabletd'>{item.fuelType}</td>
-                <td className='databoardtable__tabletd'>{item.distance}</td>
+                <td className='databoardtable__tabletd'>
+                  {data[item.factorType - 1].factor}
+                </td>
+                <td className='databoardtable__tabletd'>{item.volume}</td>
               </tr>
             );
           })}
@@ -114,9 +137,9 @@ export function Databoardtablef() {
       </table>
       <div
         style={{
-          maxWidth: '70vw',
+          width: '50vw',
           padding: '8px',
-          margin: '0 10rem',
+          margin: '0 4rem',
         }}
       >
         {showInput ? (
@@ -132,7 +155,8 @@ export function Databoardtablef() {
                 boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
                 margin: '0 4rem 0 0',
                 padding: '8px',
-                marginRight: '27rem',
+                marginRight: '1rem',
+                marginLeft: '0rem',
               }}
             />
             <select
@@ -142,9 +166,8 @@ export function Databoardtablef() {
                 appearance: 'none',
                 border: 'solid 0.5px',
                 padding: '8px',
-                margin: '0 0rem 0 2rem',
+                margin: '0 1rem 0 20rem',
                 borderRadius: '4px',
-                marginRight: '10rem',
               }}
               required={true}
               onChange={(e) => {
@@ -161,11 +184,11 @@ export function Databoardtablef() {
             </select>
             <input
               type={'number'}
-              value={distance}
+              value={volume}
               style={{
                 appearance: 'none',
                 border: 'solid 0.5px',
-                margin: '0 2rem 0 18rem',
+                margin: '0 2rem 0 10rem',
                 padding: '8px',
                 borderRadius: '4px',
               }}
@@ -173,9 +196,9 @@ export function Databoardtablef() {
               onChange={(e) => {
                 const value = parseInt(e.target.value);
                 if (value > -1) {
-                  setDistance(value);
+                  setVolume(value);
                 } else if (e.target.value === '') {
-                  setDistance('');
+                  setVolume('');
                 }
               }}
             />
@@ -201,8 +224,8 @@ export function Databoardtablef() {
               </tr>
                 `*/
                 if (
-                  distance > -1 &&
-                  distance !== '' &&
+                  volume > -1 &&
+                  volume !== '' &&
                   dates !== '' &&
                   fuelType !== ''
                 ) {
@@ -218,14 +241,7 @@ export function Databoardtablef() {
                     'en-US',
                     options
                   );
-                  setLo([
-                    ...lo,
-                    {
-                      date: formattedDate,
-                      fuelType: fuelType,
-                      distance: distance,
-                    },
-                  ]);
+                  postData();
                   setShowInput(false);
                 }
               }}

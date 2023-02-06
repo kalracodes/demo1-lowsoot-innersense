@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/Authcontext';
 export function Databoardtableb() {
   const [showInput, setShowInput] = useState(false);
   const [buildingSpace, setBuilding] = useState('');
@@ -11,35 +12,40 @@ export function Databoardtableb() {
   const handleChange = (event) => {
     setDate(event.target.value);
   };
-
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const postData = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUzMzgwOTQsImV4cCI6MTY3NTQyNDQ5NH0.hfTl1UjxLxhXcm8KMsmgJEVzWbzx9H0BWCUv6ArwpCM`,
-      },
-    };
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-    await axios.post(
-      'https://emissions-calculator-mc2k.onrender.com/buildingEmission',
-      {
-        buildingSpace: buildingSpace,
-        date: dates,
-        warehouseSpace: warehouse,
-      },
-      config
-    );
+      await axios.post(
+        'https://emissions-calculator-mc2k.onrender.com/buildingEmission',
+        {
+          buildingSpace: buildingSpace,
+          date: dates,
+          warehouseSpace: warehouse,
+        },
+        config
+      );
 
-    setLo([
-      ...lo,
-      {
-        date: dates,
-        buildingSpace: buildingSpace,
-        warehouseSpace: warehouse,
-      },
-    ]);
-    setDate('');
-    setBuilding('');
-    setWarehouse('');
+      setLo([
+        ...lo,
+        {
+          date: dates,
+          buildingSpace: buildingSpace,
+          warehouseSpace: warehouse,
+        },
+      ]);
+      setDate('');
+      setBuilding('');
+      setWarehouse('');
+    } catch (err) {
+      setIsuserloggedin(false);
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export function Databoardtableb() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUzMzgwOTQsImV4cCI6MTY3NTQyNDQ5NH0.hfTl1UjxLxhXcm8KMsmgJEVzWbzx9H0BWCUv6ArwpCM`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -67,6 +73,7 @@ export function Databoardtableb() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func2();

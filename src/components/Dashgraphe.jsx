@@ -4,17 +4,20 @@ import { chartarray } from '../sampledata/data';
 import { color1 } from '../color';
 import { Scatterchartgraph } from './Scatterchart';
 import axios from 'axios';
+import { useAuth } from '../contexts/Authcontext';
 export function Dashgrape() {
   // const { visualstate } = useVisuals();
   // console.log({ electricwale: visualstate.electricty.Electricity });
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
+
   useEffect(() => {
     async function func2() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzU1MTAwODIsImV4cCI6MTY3NTU5NjQ4Mn0.4I4tFb7rM4IH2X6Ipif7UyzlwcqsYCA1t4E5rULZZ_o`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -32,6 +35,7 @@ export function Dashgrape() {
           setLoading(false);
         }
       } catch (err) {
+        setIsuserloggedin(false);
         console.log(err);
       }
     }

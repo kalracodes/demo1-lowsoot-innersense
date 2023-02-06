@@ -1,22 +1,15 @@
 import { ResponsiveContainer, PieChart, Pie } from 'recharts';
 
 export function Piegraphsumblock({ data }) {
-  const datax = [
-    { name: 'Maternity Bra', value: 23, fill: '#2085ec' },
-    { name: 'Regular Bra', value: 25, fill: '#72b4eb' },
-    { name: 'Panty', value: 17, fill: '#8464a0' },
-    { name: 'Nighty', value: 17, fill: '#0a417a' },
-    { name: 'Loungee dress kind', value: 18, fill: '#cea9bc' },
-    { name: 'Loungee Long tee kind', value: 18, fill: '#ac2195' },
-    { name: 'Long Bottom', value: 18, fill: '#323232' },
-  ];
+  console.log(data);
+  const datax = [...data];
 
   return (
     <>
       <div className='dashgraphbarcont'>
         <h2 className='dashgraph__header'>Amount of Carbon Saved</h2>
         <div className='dashgraphbar__cont'>
-          <ResponsiveContainer width='100%' height='100%'>
+          <ResponsiveContainer width='105%' height='100%'>
             <PieChart height={250}>
               <Pie
                 data={datax}

@@ -6,16 +6,18 @@ import { color1 } from '../color';
 import { Linegraph } from './Linegraph';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/Authcontext';
 
 export function Dashgraphco() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   useEffect(() => {
     async function func2() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzU1MTAwODIsImV4cCI6MTY3NTU5NjQ4Mn0.4I4tFb7rM4IH2X6Ipif7UyzlwcqsYCA1t4E5rULZZ_o`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -34,6 +36,7 @@ export function Dashgraphco() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func2();

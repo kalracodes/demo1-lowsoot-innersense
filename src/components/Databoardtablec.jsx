@@ -63,8 +63,9 @@ export function Databoardtablec() {
         setDistance('');
         setWt('');
         setVehicle('');
-      } catch {
-        return redirect('/login');
+      } catch (err) {
+        console.log(err);
+        setIsuserloggedin(false);
       }
     }
   };
@@ -111,7 +112,7 @@ export function Databoardtablec() {
         }
       } catch (err) {
         console.log(err);
-        return redirect('/login');
+        setIsuserloggedin(false);
       }
     }
     func();

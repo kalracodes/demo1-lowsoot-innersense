@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/Authcontext';
 export function Databoardtablee() {
   const [showInput, setShowInput] = useState(false);
   const [energy, setEnergy] = useState('');
@@ -12,48 +13,53 @@ export function Databoardtablee() {
   };
 
   const [lo, setLo] = useState();
-
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const postData = async () => {
-    const a = data.find((item, index) => {
-      console.log(item);
-      return item.factor === source;
-      // if (item.factor === vehicleType) {
-      //   return index;
-      // }
-    });
-    console.log(a);
-    const config = {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
-      },
-    };
-
-    if (a) {
-      setLoading(false);
-
+    try {
+      const a = data.find((item, index) => {
+        console.log(item);
+        return item.factor === source;
+        // if (item.factor === vehicleType) {
+        //   return index;
+        // }
+      });
       console.log(a);
-
-      await axios.post(
-        'https://emissions-calculator-mc2k.onrender.com/electricityEmission',
-        {
-          energy: energy,
-          factorType: a.id,
-          date: dates,
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        config
-      );
+      };
 
-      setLo([
-        ...lo,
-        {
-          energy: energy,
-          factorType: a.id,
-          date: dates,
-        },
-      ]);
-      setDate('');
-      setSource('');
-      setEnergy('');
+      if (a) {
+        setLoading(false);
+
+        console.log(a);
+
+        await axios.post(
+          'https://emissions-calculator-mc2k.onrender.com/electricityEmission',
+          {
+            energy: energy,
+            factorType: a.id,
+            date: dates,
+          },
+          config
+        );
+
+        setLo([
+          ...lo,
+          {
+            energy: energy,
+            factorType: a.id,
+            date: dates,
+          },
+        ]);
+        setDate('');
+        setSource('');
+        setEnergy('');
+      }
+    } catch (err) {
+      setIsuserloggedin(false);
+      console.log(err);
     }
   };
 
@@ -69,6 +75,7 @@ export function Databoardtablee() {
         setData(response);
         console.log(response);
       } catch (err) {
+        setIsuserloggedin(false);
         console.log(err);
       }
     };
@@ -77,7 +84,7 @@ export function Databoardtablee() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUyNzIxNTcsImV4cCI6MTY3NTM1ODU1N30.WbnV1w8AAXU8Ewq0r1zMMXEulR49ykELTH02FqA8YB8`,
+            Authorization: `Bearer ${token}`,
           },
         };
 
@@ -97,6 +104,7 @@ export function Databoardtablee() {
         }
       } catch (err) {
         console.log(err);
+        setIsuserloggedin(false);
       }
     }
     func();
