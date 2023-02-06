@@ -34,6 +34,7 @@ import { useAuth } from '../contexts/Authcontext';
 export function Hompage() {
   const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const [data, setData] = useState();
+  const [startDate, setStateDate] = useState();
   const { dateval, setDateval, enddateval, setEnddateval } = useVisuals();
   const [loading, setLoading] = useState(true);
   const componentRef = useRef();
@@ -79,8 +80,11 @@ export function Hompage() {
         //   key: 'value',
         // };
 
-        const { data } = await axios.get(
-          'https://emissions-calculator-mc2k.onrender.com/visualisation',
+        console.log(dateval);
+        console.log(enddateval);
+        const { data } = await axios.post(
+          'https://emissions-calculator-mc2k.onrender.com/summary',
+          { startDate: dateval, endDate: enddateval },
           config
         );
         console.log(data);
@@ -94,7 +98,7 @@ export function Hompage() {
       }
     }
     func2();
-  }, []);
+  }, [dateval, enddateval]);
   return (
     <>
       {loading ? (
@@ -366,6 +370,13 @@ export function Hompage() {
                           />
                         </LocalizationProvider>
                       </ThemeProvider>
+                      {new Date(dateval) < new Date(enddateval) ? null : (
+                        <>
+                          <p style={{ color: 'red' }}>
+                            The End Date Cannot Be Lesser Than The Start Date
+                          </p>
+                        </>
+                      )}
                     </div>
 
                     <div className='homevizgraph__cont'>
