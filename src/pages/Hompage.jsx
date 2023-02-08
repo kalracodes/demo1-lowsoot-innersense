@@ -37,6 +37,7 @@ export function Hompage() {
   const [startDate, setStateDate] = useState();
   const { dateval, setDateval, enddateval, setEnddateval } = useVisuals();
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(true);
   const componentRef = useRef();
   const theme = createTheme({
     typography: {
@@ -87,6 +88,7 @@ export function Hompage() {
           { startDate: dateval, endDate: enddateval },
           config
         );
+        // console.log(data);
         console.log(data);
         if (data) {
           setData(data);
@@ -130,14 +132,78 @@ export function Hompage() {
                   </div>
                   <>
                     <div className='bg'>
+                      <div
+                        className='datefilters'
+                        style={{ paddingLeft: '3rem' }}
+                      >
+                        <h3 className='datefilters__head'>Date Filters</h3>
+                        <ThemeProvider theme={theme}>
+                          <CssBaseline />
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DesktopDatePicker
+                              minDate='2022-1-1'
+                              maxDate='2023-12-12'
+                              label='Start date'
+                              inputFormat='MM/DD/YYYY'
+                              value={dayjs(dateval)}
+                              onChange={(newValue) => {
+                                const monthkey = JSON.stringify(
+                                  newValue['$M'] + 1
+                                );
+                                const monthkeystring =
+                                  monthkey.length === 1
+                                    ? `0${monthkey}`
+                                    : monthkey;
+                                setDateval(
+                                  `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
+                                );
+                              }}
+                              renderInput={(params) => (
+                                <TextField {...params} />
+                              )}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <DesktopDatePicker
+                              minDate='2022-1-1'
+                              maxDate='2022-12-31'
+                              label='End date'
+                              inputFormat='MM/DD/YYYY'
+                              value={dayjs(enddateval)}
+                              onChange={(newValue) => {
+                                const monthkey = JSON.stringify(
+                                  newValue['$M'] + 1
+                                );
+                                const monthkeystring =
+                                  monthkey.length === 1
+                                    ? `0${monthkey}`
+                                    : monthkey;
+                                setEnddateval(
+                                  `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
+                                );
+                              }}
+                              renderInput={(params) => (
+                                <TextField {...params} />
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </ThemeProvider>
+                        {new Date(dateval) < new Date(enddateval) ? null : (
+                          <>
+                            <p style={{ color: 'red' }}>
+                              The End Date Cannot Be Lesser Than The Start Date
+                            </p>
+                          </>
+                        )}
+                      </div>
                       <Dashparameters />
                       <div className='summaryparams'>
                         <div className='summaryparam sum-1'>
                           <p className='summaryparam__title'>
                             Total Electricity consumed
                           </p>
+                          {console.log(data.totalElectricityUsage)}
                           <p className='summaryparam__value'>
-                            {data.totalElectricityEmission} KWh{' '}
+                            {data.totalElectricityUsage} KWh{' '}
                           </p>
                         </div>
                         <div className='summaryparam'>
@@ -322,62 +388,6 @@ export function Hompage() {
                     <br />
                     <br />
                     <br />
-                    <div className='datefilters'>
-                      <h3 className='datefilters__head'>Date Filters</h3>
-                      <ThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DesktopDatePicker
-                            minDate='2022-1-1'
-                            maxDate='2022-12-31'
-                            label='Start date'
-                            inputFormat='MM/DD/YYYY'
-                            value={dayjs(dateval)}
-                            onChange={(newValue) => {
-                              const monthkey = JSON.stringify(
-                                newValue['$M'] + 1
-                              );
-                              const monthkeystring =
-                                monthkey.length === 1
-                                  ? `0${monthkey}`
-                                  : monthkey;
-                              setDateval(
-                                `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
-                              );
-                            }}
-                            renderInput={(params) => <TextField {...params} />}
-                          />
-                          &nbsp;&nbsp;&nbsp;
-                          <DesktopDatePicker
-                            minDate='2022-1-1'
-                            maxDate='2022-12-31'
-                            label='End date'
-                            inputFormat='MM/DD/YYYY'
-                            value={dayjs(enddateval)}
-                            onChange={(newValue) => {
-                              const monthkey = JSON.stringify(
-                                newValue['$M'] + 1
-                              );
-                              const monthkeystring =
-                                monthkey.length === 1
-                                  ? `0${monthkey}`
-                                  : monthkey;
-                              setEnddateval(
-                                `${newValue['$y']}-${monthkeystring}-${newValue['$D']}`
-                              );
-                            }}
-                            renderInput={(params) => <TextField {...params} />}
-                          />
-                        </LocalizationProvider>
-                      </ThemeProvider>
-                      {new Date(dateval) < new Date(enddateval) ? null : (
-                        <>
-                          <p style={{ color: 'red' }}>
-                            The End Date Cannot Be Lesser Than The Start Date
-                          </p>
-                        </>
-                      )}
-                    </div>
 
                     <div className='homevizgraph__cont'>
                       <div className='summarygrid'>

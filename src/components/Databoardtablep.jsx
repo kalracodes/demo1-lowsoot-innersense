@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/Authcontext';
 export function Databoardtablep() {
   const [showInput, setShowInput] = useState(false);
   const [product, setProduct] = useState('');
@@ -7,7 +8,7 @@ export function Databoardtablep() {
   const [dates, setDate] = useState('');
   const [lo, setLo] = useState();
   const [loading, setLoading] = useState(true);
-
+  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
   const handleChange = (event) => {
     setDate(event.target.value);
   };
@@ -15,7 +16,7 @@ export function Databoardtablep() {
   const postData = async () => {
     const config = {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUzNDQ1ODEsImV4cCI6MTY3NTQzMDk4MX0.ZhNwcMi56WMfphF0YfQM0rhwESUaUa5oRQW_UchN4_I`,
+        Authorization: `Bearer ${token}`,
       },
     };
     console.log({
@@ -43,7 +44,7 @@ export function Databoardtablep() {
       try {
         const config = {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRmYTgzNWM3NjVjYWM4Njk5ZDE1ZjIiLCJ1c2VyRW1haWwiOiJhYXNocml0Z2FyZ0BnbWFpbC5jb20iLCJpYXQiOjE2NzUzNDQ1ODEsImV4cCI6MTY3NTQzMDk4MX0.ZhNwcMi56WMfphF0YfQM0rhwESUaUa5oRQW_UchN4_I`,
+            Authorization: `Bearer ${token}`,
           },
         };
 

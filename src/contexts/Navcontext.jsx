@@ -1,24 +1,24 @@
-import React, { useReducer } from "react";
-import { createContext, useContext } from "react";
+import React, { useReducer } from 'react';
+import { createContext, useContext } from 'react';
 // import automate from "../assets/sidenav/automate.svg";
-import cargo from "../assets/sidenav/sidenavv3/mdi_truck-cargo-container.svg";
-import datain from "../assets/sidenav/sidenavv3/mdi_truck-cargo-container.svg";
-import electricity from "../assets/sidenav/sidenavv3/fluent_flash.svg";
-import reports from "../assets/sidenav/reports.svg";
-import travel from "../assets/sidenav/sidenavv3/ic_outline-card-travel.svg";
+import cargo from '../assets/sidenav/sidenavv3/mdi_truck-cargo-container.svg';
+import datain from '../assets/sidenav/sidenavv3/mdi_truck-cargo-container.svg';
+import electricity from '../assets/sidenav/sidenavv3/fluent_flash.svg';
+import reports from '../assets/sidenav/reports.svg';
+import travel from '../assets/sidenav/sidenavv3/ic_outline-card-travel.svg';
 // import trshbtn from "../assets/sidenav/sidenavv3/ri_delete-bin-6-line.svg";
-import reportoutline from "../assets/sidenav/sidenavv3/report_icon.svg";
-import visualize from "../assets/sidenav/visualize.svg";
-import fuel from "../assets/sidenav/fuel.svg";
-import product from "../assets/sidenav/product.svg";
-import building from "../assets/sidenav/building.svg";
+import reportoutline from '../assets/sidenav/sidenavv3/report_icon.svg';
+import visualize from '../assets/sidenav/visualize.svg';
+import fuel from '../assets/sidenav/fuel.svg';
+import product from '../assets/sidenav/product.svg';
+import building from '../assets/sidenav/building.svg';
 const Navcontext = createContext();
 export function Navprov({ children }) {
   function navreducer(state, action) {
     switch (action.type) {
-      case "SET_NAVSTATE":
+      case 'SET_NAVSTATE':
         return { ...state, navnow: action.payload.navnum };
-      case "TOGGLE_NAVDD":
+      case 'TOGGLE_NAVDD':
         const togglednavdd = [...state.subnav2].map((navitm) => {
           if (navitm.navid === action.payload.navid) {
             return { ...navitm, isopen: !navitm.isopen };
@@ -26,13 +26,13 @@ export function Navprov({ children }) {
           return navitm;
         });
         return { ...state, subnav2: togglednavdd };
-      case "SET_NAVBRAND":
+      case 'SET_NAVBRAND':
         return {
           ...state,
           navimage: action.payload.navimage,
           navbrandname: action.payload.navbrandname,
         };
-      case "SELECT_NAVDD":
+      case 'SELECT_NAVDD':
         const givennavid = action.payload.navid;
         const givensubnavid = action.payload.id;
         const selectednavstate = navselection(
@@ -41,7 +41,7 @@ export function Navprov({ children }) {
           state.subnav2
         );
         return { ...state, subnav2: selectednavstate };
-      case "SELECT_HOME":
+      case 'SELECT_HOME':
         const guy = [...state.subnav2].map((item) => {
           const kiki = [...item.subnavarr].map((itm) => {
             return { ...itm, isSlected: false };
@@ -58,66 +58,74 @@ export function Navprov({ children }) {
     subnav2: [
       {
         navid: 1,
-        name: "Data in board",
+        name: 'Data in board',
         isopen: true,
         img: datain,
-        path: "databoard",
-        route: "datainboard",
+        path: 'databoard',
+        route: 'datainboard',
         canopen: true,
         subnavarr: [
           {
             id: 1,
             imgicon: travel,
-            name: "Commute",
-            subroute: "commute",
+            name: 'Commute',
+            subroute: 'commute',
             navnum: 1,
             isSlected: false,
           },
           {
             id: 2,
             imgicon: electricity,
-            name: "Electricity",
-            subroute: "electricity",
+            name: 'Electricity',
+            subroute: 'electricity',
             navnum: 2,
             isSlected: false,
           },
           {
             id: 3,
             imgicon: cargo,
-            name: "Cargo",
-            subroute: "cargo",
+            name: 'Cargo',
+            subroute: 'cargo',
             navnum: 3,
             isSlected: false,
           },
           {
             id: 4,
             imgicon: building,
-            name: "Building",
-            subroute: "Building",
+            name: 'Building',
+            subroute: 'Building',
             navnum: 4,
             isSlected: false,
           },
           {
             id: 5,
             imgicon: cargo,
-            name: "Delivery",
-            subroute: "delivery",
+            name: 'Delivery',
+            subroute: 'delivery',
             navnum: 5,
             isSlected: false,
           },
           {
             id: 6,
             imgicon: fuel,
-            name: "Fuel",
-            subroute: "fuel",
+            name: 'Fuel',
+            subroute: 'fuel',
             navnum: 6,
             isSlected: false,
           },
           {
             id: 7,
             imgicon: product,
-            name: "Product",
-            subroute: "product",
+            name: 'Product',
+            subroute: 'product',
+            navnum: 7,
+            isSlected: false,
+          },
+          {
+            id: 8,
+            imgicon: product,
+            name: 'Carbon Neutral',
+            subroute: 'carbon-neutral',
             navnum: 7,
             isSlected: false,
           },
@@ -125,66 +133,74 @@ export function Navprov({ children }) {
       },
       {
         navid: 3,
-        name: "Visualize",
+        name: 'Visualize',
         isopen: true,
         img: visualize,
-        path: "visualize",
-        route: "visualization",
+        path: 'visualize',
+        route: 'visualization',
         canopen: true,
         subnavarr: [
           {
             id: 1,
             imgicon: travel,
-            name: "Commute",
-            subroute: "commute",
+            name: 'Commute',
+            subroute: 'commute',
             navnum: 1,
             isSlected: false,
           },
           {
             id: 2,
             imgicon: electricity,
-            name: "Electricity",
-            subroute: "electricity",
+            name: 'Electricity',
+            subroute: 'electricity',
             navnum: 2,
             isSlected: false,
           },
           {
             id: 3,
             imgicon: cargo,
-            name: "Cargo",
-            subroute: "cargo",
+            name: 'Cargo',
+            subroute: 'cargo',
             navnum: 3,
             isSlected: false,
           },
           {
             id: 4,
             imgicon: building,
-            name: "Building",
-            subroute: "Building",
+            name: 'Building',
+            subroute: 'Building',
             navnum: 4,
             isSlected: false,
           },
           {
             id: 5,
             imgicon: cargo,
-            name: "Delivery",
-            subroute: "delivery",
+            name: 'Delivery',
+            subroute: 'delivery',
             navnum: 5,
             isSlected: false,
           },
           {
             id: 6,
             imgicon: fuel,
-            name: "Fuel",
-            subroute: "fuel",
+            name: 'Fuel',
+            subroute: 'fuel',
             navnum: 6,
             isSlected: false,
           },
           {
             id: 7,
             imgicon: product,
-            name: "Product",
-            subroute: "product",
+            name: 'Product',
+            subroute: 'product',
+            navnum: 7,
+            isSlected: false,
+          },
+          {
+            id: 8,
+            imgicon: product,
+            name: 'Carbon Neutral',
+            subroute: 'carbon-neutral',
             navnum: 7,
             isSlected: false,
           },
@@ -192,17 +208,17 @@ export function Navprov({ children }) {
       },
       {
         navid: 4,
-        name: "Report",
+        name: 'Report',
         isopen: true,
         img: reportoutline,
-        path: "report",
-        route: "report",
+        path: 'report',
+        route: 'report',
         canopen: true,
         isreport: false,
         reportsubnav: [
           {
             id: 1,
-            name: "BRSR",
+            name: 'BRSR',
             img: reports,
           },
         ],
@@ -210,16 +226,16 @@ export function Navprov({ children }) {
           {
             id: 1,
             imgicon: reportoutline,
-            name: "BRSR",
-            subroute: "brsr",
+            name: 'BRSR',
+            subroute: 'brsr',
             navnum: 1,
             isSlected: false,
           },
         ],
       },
     ],
-    navimage: "",
-    navbrandname: "",
+    navimage: '',
+    navbrandname: '',
   });
   return (
     <Navcontext.Provider value={{ navboardstate, navdispatch }}>

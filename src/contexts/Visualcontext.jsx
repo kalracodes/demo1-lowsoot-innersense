@@ -1,14 +1,14 @@
 // Visualcontext
 
-import React, { useReducer, useState } from "react";
-import { createContext, useContext } from "react";
+import React, { useReducer, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 const Visualcontext = createContext();
 export function Visualsprov({ children }) {
   const [enabledc, setEnabledc] = useState(true);
   function visualreducer(state, action) {
     switch (action.type) {
-      case "SET_VISUALS":
+      case 'SET_VISUALS':
         return {
           ...state,
           travel: action.payload.travelviz,
@@ -20,7 +20,7 @@ export function Visualsprov({ children }) {
           scope3: action.payload.scope3viz,
           total: action.payload.toatalviz,
         };
-      case "SET_DASHTOTALS":
+      case 'SET_DASHTOTALS':
         return {
           ...state,
           totalElectricityUsage: action.payload.totalElectricityUsage,
@@ -46,8 +46,8 @@ export function Visualsprov({ children }) {
   });
   // const todaydate = new Date();
   // 2022-08-28 JSON.stringify(todaydate).slice(1, 11)
-  const [dateval, setDateval] = useState("2022-02-28");
-  const [enddateval, setEnddateval] = useState("2022-07-28");
+  const [dateval, setDateval] = useState('2022-01-01');
+  const [enddateval, setEnddateval] = useState('2023-02-15');
   return (
     <Visualcontext.Provider
       value={{
