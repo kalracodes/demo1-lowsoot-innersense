@@ -29,6 +29,7 @@ export function Signin() {
   const [pass, setPass] = useState();
   const [log, setLog] = useState(true);
   const [lS, setLS] = useState([]);
+  const [err, setErr] = useState(false);
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/`;
@@ -37,29 +38,33 @@ export function Signin() {
 
   const check = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post(
-      'https://emissions-calculator-mc2k.onrender.com/login',
-      {
-        email: email,
-        password: pass,
-      }
-    );
-    const token = data.token;
-    const companyId = data.companyId;
-    // console.log(token);
-    if (token) {
-      localStorage.setItem(
-        'data',
-        JSON.stringify({
-          clienttoken: token,
-          loginstatus: true,
-          clientcompany: companyId,
-        })
+    try {
+      const { data } = await axios.post(
+        'https://emissions-calculator-mc2k.onrender.com/login',
+        {
+          email: email,
+          password: pass,
+        }
       );
-      setToken(token);
-      setIsuserloggedin(true);
-      setCompany(companyId);
-      routeChange();
+      const token = data.token;
+      const companyId = data.companyId;
+      // console.log(token);
+      if (token) {
+        localStorage.setItem(
+          'data',
+          JSON.stringify({
+            clienttoken: token,
+            loginstatus: true,
+            clientcompany: companyId,
+          })
+        );
+        setToken(token);
+        setIsuserloggedin(true);
+        setCompany(companyId);
+        routeChange();
+      }
+    } catch (err) {
+      setErr(true);
     }
   };
 
@@ -73,6 +78,9 @@ export function Signin() {
           <div className='sigin__container'>
             <div className='sigin__head'>
               <h1 className='sigin__header'>Login</h1>
+              {err ? (
+                <div className='error'>Invalid Username / Password</div>
+              ) : null}
               {/* <p className='sigin__message'>
                 Dont have an account?&nbsp;
                 <Link className='link' to='/signup'>
@@ -97,6 +105,7 @@ export function Signin() {
                 className='input-login'
                 placeholder='Passsword'
               />
+
               <button type='submit' className='btn-submit' onClick={check}>
                 Log In
               </button>

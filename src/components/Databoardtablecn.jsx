@@ -145,6 +145,8 @@ export function Databoardtablecn() {
         if (resp) {
           console.log(resp);
           setTillDate(resp);
+        } else {
+          setTillDate(0);
         }
       } catch (err) {
         console.log(err);

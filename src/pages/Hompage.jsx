@@ -106,7 +106,7 @@ export function Hompage() {
         }
       } catch (err) {
         console.log(err);
-        // setIsuserloggedin(false);
+        setIsuserloggedin(false);
       }
     }
     func2();

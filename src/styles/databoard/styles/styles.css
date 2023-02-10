@@ -166,3 +166,8 @@ input[type='number'] {
 .wd-def {
   width: 81vw;
 }
+.error {
+  font-size: 2rem;
+  color: red;
+  margin-top: 1.7rem;
+}
