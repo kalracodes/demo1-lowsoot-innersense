@@ -9,7 +9,14 @@ import * as Yup from 'yup';
 
 import { Authprov, useAuth } from '../contexts/Authcontext';
 export function Signin() {
-  const { token, setToken, isuserloggedin, setIsuserloggedin } = useAuth();
+  const {
+    token,
+    setToken,
+    isuserloggedin,
+    setIsuserloggedin,
+    company,
+    setCompany,
+  } = useAuth();
   const Loginschema = Yup.object().shape({
     companymail: Yup.string()
       .email('Invalid email address')
@@ -30,24 +37,28 @@ export function Signin() {
 
   const check = async (e) => {
     e.preventDefault();
-    const {
-      data: { token },
-    } = await axios.post(
+    const { data } = await axios.post(
       'https://emissions-calculator-mc2k.onrender.com/login',
       {
         email: email,
         password: pass,
       }
     );
-
+    const token = data.token;
+    const companyId = data.companyId;
     // console.log(token);
     if (token) {
       localStorage.setItem(
         'data',
-        JSON.stringify({ clienttoken: token, loginstatus: true })
+        JSON.stringify({
+          clienttoken: token,
+          loginstatus: true,
+          clientcompany: companyId,
+        })
       );
       setToken(token);
       setIsuserloggedin(true);
+      setCompany(companyId);
       routeChange();
     }
   };

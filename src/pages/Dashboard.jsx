@@ -15,8 +15,18 @@ import { Dashwebplatforms } from '../components/Dashwebplatforms';
 import { Lowsootfooter } from '../components/Lowsootfooter';
 import { Sidenavv3 } from '../components/sidenav/Sidenavv3';
 import { Topbarv3 } from '../components/topbar/Topbarv3';
+import { Dashgraphcn } from '../components/Dashgraphcn';
+import { useAuth } from '../contexts/Authcontext';
 
 export function Dashboard() {
+  const {
+    token,
+    setToken,
+    isuserloggedin,
+    setIsuserloggedin,
+    company,
+    setCompany,
+  } = useAuth();
   const { name } = useParams();
   return (
     <div className='dcontainer'>
@@ -144,20 +154,43 @@ export function Dashboard() {
           ) : (
             <span></span>
           )}
-          <div className='dashgraphs__cont'>
-            {name === 'travel' && <Dashgraph />}
-            {name === 'cargo' && <Dashgraphc />}
-            {name === 'Building' && <Dashgraphb />}
-            {name === 'electricity' && <Dashgrape />}
-            {name === 'fuel' && <Dashgrapf />}
-            {name === 'commute' && <Dashgraphco />}
-            {name === 's3fuel' && <Dashgrapfs3 />}
-            {name === 's3electricity' && <Dashgrapes3 />}
-            {name === 'product' && <Dashgraphp />}
-            {/* refrigeration */}
+          {company === 1 ? (
+            <>
+              <div className='dashgraphs__cont'>
+                {name === 'travel' && <Dashgraph />}
+                {name === 'cargo' && <Dashgraphc />}
+                {name === 'Building' && <Dashgraphb />}
+                {name === 'electricity' && <Dashgrape />}
+                {name === 'fuel' && <Dashgrapf />}
+                {name === 'commute' && <Dashgraphco />}
+                {name === 's3fuel' && <Dashgrapfs3 />}
+                {name === 's3electricity' && <Dashgrapes3 />}
+                {name === 'product' && <Dashgraphp />}
 
-            {name === 'delivery' && <Dashgraphdel />}
-          </div>
+                {/* refrigeration */}
+
+                {name === 'delivery' && <Dashgraphdel />}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className='dashgraphs__cont'>
+                {name === 'travel' && <Dashgraph />}
+                {name === 'cargo' && <Dashgraphc />}
+                {name === 'Building' && <Dashgraphb />}
+                {name === 'electricity' && <Dashgrape />}
+                {name === 'fuel' && <Dashgrapf />}
+                {name === 'commute' && <Dashgraphco />}
+                {name === 's3fuel' && <Dashgrapfs3 />}
+                {name === 's3electricity' && <Dashgrapes3 />}
+                {name === 'carbon-neutral' && <Dashgraphcn />}
+
+                {/* refrigeration */}
+
+                {name === 'delivery' && <Dashgraphdel />}
+              </div>
+            </>
+          )}
           {/* <div className="dashgraphblock">
             <Dashgrapharea />
             <Dashwebplatforms />

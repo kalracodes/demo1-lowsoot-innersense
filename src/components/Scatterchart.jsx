@@ -12,7 +12,7 @@ import {
 
 export function Scatterchartgraph(params) {
   const co2 = ' CO2E';
-  const { colorvalue } = params;
+  const { colorvalue, vizarray } = params;
   const scatterfill = colorvalue ? colorvalue : '#8884d8';
   //   const { vizarray } = params;
   //   const { dateval, enddateval } = useVisuals();
@@ -21,14 +21,8 @@ export function Scatterchartgraph(params) {
   //   const ju = vizx.findIndex((elem) => elem.monthno === monthno);
   //   const juend = Number(enddateval.slice(5, 7));
   //   const jju = [...vizx].slice(ju, juend);
-  const data = [
-    { x: 150, y: 200, z: 200 },
-    { x: 120, y: 100, z: 260 },
-    { x: 170, y: 300, z: 400 },
-    { x: 140, y: 250, z: 280 },
-    { x: 150, y: 400, z: 500 },
-    { x: 110, y: 280, z: 200 },
-  ];
+  console.log(vizarray);
+  const data = [...vizarray];
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
@@ -44,10 +38,10 @@ export function Scatterchartgraph(params) {
       >
         <CartesianGrid />
         <XAxis
-          type='number'
-          dataKey='x'
-          name='stature'
-          unit=' CO2E'
+          type='category'
+          dataKey='month'
+          name='Month'
+          unit=''
           style={{
             fontSize: '1rem',
             fontWeight: '400',
@@ -64,8 +58,8 @@ export function Scatterchartgraph(params) {
           }}
           axisLine={false}
           type='number'
-          dataKey='y'
-          name='weight'
+          dataKey='emission'
+          name='Emission'
           unit={co2}
         />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />

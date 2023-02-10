@@ -8,6 +8,7 @@ export function Databoardtabledel() {
   const [distance, setDistance] = useState('');
   const [dates, setDate] = useState('');
   const [destintion, setDestination] = useState('');
+  const [city, setCity] = useState('');
   const [data, setData] = useState('');
   const [lo, setLo] = useState();
   const [loading, setLoading] = useState(true);
@@ -36,18 +37,32 @@ export function Databoardtabledel() {
       console.log(c);
       if (c) {
         setLoading(false);
-
+        console.log({
+          numberOfItems: items,
+          type: product,
+          destinationCity: destintion,
+          date: dates,
+          factorType: c.id,
+          travelBy: 'Road',
+        });
         await axios.post(
           'https://emissions-calculator-mc2k.onrender.com/deliveryEmission',
           {
             numberOfItems: items,
-            date: dates,
+            type: product,
             destinationCity: destintion,
+            date: dates,
             factorType: c.id,
+            travelBy: 'Road',
           },
           config
         );
-
+        console.log({
+          numberOfItems: items,
+          date: dates,
+          destinationCity: destintion,
+          factorType: c.id,
+        });
         setLo([
           ...lo,
           {
@@ -63,7 +78,7 @@ export function Databoardtabledel() {
       }
     } catch (err) {
       console.log(err);
-      setIsuserloggedin(false);
+      // setIsuserloggedin(false);
     }
   };
 
@@ -83,6 +98,28 @@ export function Databoardtabledel() {
         );
 
         setData(response);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+        setIsuserloggedin(false);
+      }
+    };
+
+    const func1 = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const {
+          data: { cities: response },
+        } = await axios.get(
+          'https://emissions-calculator-mc2k.onrender.com/citiesList',
+          config
+        );
+
+        setCity(response);
         console.log(response);
       } catch (err) {
         console.log(err);
@@ -118,6 +155,7 @@ export function Databoardtabledel() {
       }
     }
     func();
+    func1();
     func2();
   }, []);
 
@@ -243,22 +281,29 @@ export function Databoardtabledel() {
                   <option>Lounge Bottom</option>
                 </select>
 
-                <input
+                <select
                   type={'text'}
                   value={destintion}
                   style={{
                     appearance: 'none',
                     border: 'solid 0.5px',
                     padding: '8px',
+                    margin: '0rem 8px 0px 10rem',
                     borderRadius: '4px',
-                    marginLeft: '5rem',
                   }}
                   required={true}
                   onChange={(e) => {
-                    setDestination(e.target.value);
+                    const value = e.target.value;
+                    setDestination(value);
                   }}
-                />
-
+                >
+                  <option selected='' disabled='' value=''>
+                    Choose...
+                  </option>
+                  {city.map((auto) => {
+                    return <option value={auto}>{auto}</option>;
+                  })}
+                </select>
                 <input
                   type={'number'}
                   value={items}
