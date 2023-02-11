@@ -235,7 +235,7 @@ export function Hompage() {
                             {data.totalEmployeeCommuteDistance} Kms{' '}
                           </p>
                         </div>
-                        {company === 1 ? (
+                        {company == 1 ? (
                           <>
                             <div className='summaryparam'>
                               <p className='summaryparam__title'>
@@ -259,8 +259,9 @@ export function Hompage() {
               </div> */}
                       </div>
                       {/* Part 2 below */}
-                      {company === 1 ? (
+                      {company == 1 ? (
                         <>
+                          {console.log('printed')}
                           <div className='summaryparams'>
                             <div className='summaryparam sum-1'>
                               <p className='summaryparam__title'>
@@ -383,6 +384,16 @@ export function Hompage() {
                                 <sub>2</sub>e{' '}
                               </p>
                             </div>
+                            <div className='summaryparam sum-1 '>
+                              <p className='summaryparam__title'>
+                                Carbon Intensity <br />
+                                <br />
+                              </p>
+                              <p className='summaryparam__value'>
+                                {data.Product['Panty'].saved} CO
+                                <sub>2</sub>e{' '}
+                              </p>
+                            </div>
 
                             {/* <div className="summaryparam">
                 <p className="summaryparam__title">
@@ -402,7 +413,7 @@ export function Hompage() {
                     <div className='homevizgraph__cont'>
                       <div className='summarygrid'>
                         {console.log(data['ProductGraph'])}
-                        {company === 1 ? (
+                        {company == 1 ? (
                           <Piegraphsumblock
                             data={data['ProductGraph']
                               .filter((item) => {

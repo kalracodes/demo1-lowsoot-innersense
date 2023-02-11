@@ -48,6 +48,7 @@ export function Visualsprov({ children }) {
   // 2022-08-28 JSON.stringify(todaydate).slice(1, 11)
   const [dateval, setDateval] = useState('2022-01-01');
   const [enddateval, setEnddateval] = useState('2023-02-15');
+
   return (
     <Visualcontext.Provider
       value={{

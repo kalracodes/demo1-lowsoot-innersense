@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Authcontext';
 import { useNavc } from '../../contexts/Navcontext';
 import '../../styles/sidebar/Sidenavv3.css';
-export function Sidenavv3() {
+export function Sidenavv3({ totBuildingSp, totWhSp }) {
   const {
     token,
     setToken,
@@ -84,7 +84,7 @@ function Subnav3(params) {
   } = useAuth();
   return (
     <>
-      {company === 1 ? (
+      {company == 1 ? (
         <>
           {[...subnavarrayx].map((subnavitm) => {
             if (subnavitm.name !== 'Carbon Neutral') {

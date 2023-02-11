@@ -4,16 +4,17 @@ import { createContext, useContext } from 'react';
 
 const Authcontext = createContext();
 export function Authprov({ children }) {
-  const { clienttoken, loginstatus, companyId } = JSON.parse(
+  const { clienttoken, loginstatus, clientcompany } = JSON.parse(
     localStorage.getItem('data')
   ) || {
     clienttoken: null,
     loginstatus: false,
-    companyId: null,
+    clientcompany: null,
   };
   const [token, setToken] = useState(clienttoken);
   const [isuserloggedin, setIsuserloggedin] = useState(loginstatus);
-  const [company, setCompany] = useState(companyId);
+  const [company, setCompany] = useState(clientcompany);
+  console.log(company);
   return (
     <Authcontext.Provider
       value={{
