@@ -40,8 +40,11 @@ export function Report() {
             <h1 className='reportmainheader'>
               <span className='introjs__4'>Report</span>
             </h1>
-            <div style={{transform: 'translateY(-5.5rem)'}}>
-            <Reportend generatePDF={generatePDF} componentRef={componentRef} />
+            <div style={{ transform: 'translateY(-5.5rem)' }}>
+              <Reportend
+                generatePDF={generatePDF}
+                componentRef={componentRef}
+              />
             </div>
           </div>
           <div className='reportmaincont'>

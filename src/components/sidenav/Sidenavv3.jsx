@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Authcontext';
 import { useNavc } from '../../contexts/Navcontext';
+import img1 from '../../Shibel.jpg';
 import '../../styles/sidebar/Sidenavv3.css';
 export function Sidenavv3({ totBuildingSp, totWhSp }) {
   const {
@@ -19,11 +20,15 @@ export function Sidenavv3({ totBuildingSp, totWhSp }) {
       <div className='sidenavv3 introjs__2'>
         <div className='sidenavv3__logo'>
           <div className='sidenavv3__logocont'>
-            <img
-              className='sidenavv3__logoimg'
-              src='https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/kztoakpkkpmmtslxrnf4'
-              alt='sideimage'
-            />
+            {company == 1 ? (
+              <img
+                className='sidenavv3__logoimg'
+                src='https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/kztoakpkkpmmtslxrnf4'
+                alt='sideimage'
+              />
+            ) : (
+              <img className='sidenavv3__logoimg' src={img1} alt='sideimage' />
+            )}
           </div>
           <p className='sidenavv3__logopara'>
             {company == 1 ? `Innersense` : 'Shebil'}

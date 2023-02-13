@@ -9,7 +9,7 @@ export function Scattergraphblock(params) {
         style={{ paddingLeft: '0', width: '100%' }}
       >
         <h2 className='dashgraph__header' style={{ paddingLeft: '3rem' }}>
-          {graphname} in CO<sub>2</sub>e
+          {graphname}
         </h2>
         <div className='dashgraphbar__cont'>
           <Scatterchartgraph vizarray={vizarray} colorvalue={colorvalue} />

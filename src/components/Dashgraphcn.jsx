@@ -35,8 +35,8 @@ export function Dashgraphcn() {
       setDataGraph1(
         c['data'].map((item) => {
           return {
-            goal: item.goal,
             amountSpent: item.amountSpent,
+            emissionTillDate: item.emissionTillDate,
           };
         })
       );
@@ -44,8 +44,8 @@ export function Dashgraphcn() {
       setDataGraph2(
         c['data'].map((item) => {
           return {
+            amountSpent: item.amountSpent,
             goal: item.goal,
-            emissionTillDate: item.emissionTillDate,
           };
         })
       );
@@ -130,7 +130,7 @@ export function Dashgraphcn() {
                 >
                   <Scattergraphblock
                     vizarray={dataGraph1}
-                    graphname={'Road Cargo'}
+                    graphname={'Total Emission vs Amount Spent'}
                     colorvalue={'#d64543'}
                   />
                 </div>
@@ -140,7 +140,7 @@ export function Dashgraphcn() {
                 >
                   <Scattergraphblock
                     vizarray={dataGraph2}
-                    graphname={'Road Cargo'}
+                    graphname={'Goal vs Amount Spent'}
                     colorvalue={'#d64543'}
                   />
                 </div>
