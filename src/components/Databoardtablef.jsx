@@ -137,71 +137,85 @@ export function Databoardtablef() {
       </table>
       <div
         style={{
-          width: '50vw',
+          width: '100%',
           padding: '8px',
-          margin: '0 4rem',
+          margin: '0 auto',
         }}
       >
         {showInput ? (
-          <div className='data-fuel' style={{ fontSize: '14px' }}>
-            <input
-              type='date'
-              value={dates}
-              onChange={handleChange}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                borderRadius: '4px',
-                boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                margin: '0 4rem 0 0',
-                padding: '8px',
-                marginRight: '1rem',
-                marginLeft: '0rem',
-              }}
-            />
-            <select
-              type={'text'}
-              value={fuelType}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                padding: '8px',
-                margin: '0 1rem 0 20rem',
-                borderRadius: '4px',
-              }}
-              required={true}
-              onChange={(e) => {
-                const value = e.target.value;
-                setFuel(value);
-              }}
-            >
-              <option selected='' disabled='' value=''>
-                Choose..
-              </option>
-              {data.map((item) => {
-                return <option>{item.factor}</option>;
-              })}
-            </select>
-            <input
-              type={'number'}
-              value={volume}
-              style={{
-                appearance: 'none',
-                border: 'solid 0.5px',
-                margin: '0 2rem 0 10rem',
-                padding: '8px',
-                borderRadius: '4px',
-              }}
-              required={true}
-              onChange={(e) => {
-                const value = parseInt(e.target.value);
-                if (value > -1) {
-                  setVolume(value);
-                } else if (e.target.value === '') {
-                  setVolume('');
-                }
-              }}
-            />
+          <>
+            <table className='databoardtable__table'>
+              <tbody className='databoardtable__tablebody'>
+                <tr className='databoardtable__theadtr'>
+                  <td className='databoardtable__tabletd' scope='col'>
+                    <input
+                      type='date'
+                      value={dates}
+                      onChange={handleChange}
+                      style={{
+                        appearance: 'none',
+                        border: 'solid 0.5px',
+                        borderRadius: '4px',
+                        boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+
+                        padding: '8px',
+                        marginRight: '1rem',
+                        marginLeft: '20rem',
+                      }}
+                    />
+                  </td>
+                  <td className='databoardtable__tabletd' scope='col'>
+                    <select
+                      type={'text'}
+                      value={fuelType}
+                      style={{
+                        appearance: 'none',
+                        border: 'solid 0.5px',
+                        padding: '8px',
+                        marginLeft: '31rem',
+                        borderRadius: '4px',
+                        width: '170px',
+                      }}
+                      required={true}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setFuel(value);
+                      }}
+                    >
+                      <option selected='' disabled='' value=''>
+                        Choose..
+                      </option>
+                      {data.map((item) => {
+                        return <option>{item.factor}</option>;
+                      })}
+                    </select>
+                  </td>
+                  <td className='databoardtable__tabletd' scope='col'>
+                    <input
+                      type={'number'}
+                      value={volume}
+                      style={{
+                        appearance: 'none',
+                        border: 'solid 0.5px',
+                        margin: '0 2rem 0 10rem',
+                        padding: '8px',
+                        borderRadius: '4px',
+                      }}
+                      required={true}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value);
+                        if (value > -1) {
+                          setVolume(value);
+                        } else if (e.target.value === '') {
+                          setVolume('');
+                        }
+                      }}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
             <button
               id='addButton'
               style={{
@@ -248,7 +262,7 @@ export function Databoardtablef() {
             >
               Add Row
             </button>
-          </div>
+          </>
         ) : (
           <button
             id='addButton'

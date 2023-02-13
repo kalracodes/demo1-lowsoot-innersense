@@ -23,6 +23,8 @@ export function Scatterchartgraph(params) {
   //   const jju = [...vizx].slice(ju, juend);
   console.log(vizarray);
   const data = [...vizarray];
+  console.log(Object.keys(vizarray[0]));
+  console.log(Object.keys(vizarray[0])[0] === 'month');
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
@@ -38,9 +40,9 @@ export function Scatterchartgraph(params) {
       >
         <CartesianGrid />
         <XAxis
-          type='category'
-          dataKey='month'
-          name='Month'
+          type={Object.keys(vizarray[0])[0] == 'month' ? 'category' : 'number'}
+          dataKey={Object.keys(vizarray[0])[0]}
+          name={Object.keys(vizarray[0])[0]}
           unit=''
           style={{
             fontSize: '1rem',
@@ -58,8 +60,8 @@ export function Scatterchartgraph(params) {
           }}
           axisLine={false}
           type='number'
-          dataKey='emission'
-          name='Emission'
+          dataKey={Object.keys(vizarray[0])[1]}
+          name={Object.keys(vizarray[0])[1]}
           unit={co2}
         />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />

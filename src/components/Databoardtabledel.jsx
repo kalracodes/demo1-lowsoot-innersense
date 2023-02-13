@@ -209,121 +209,140 @@ export function Databoardtabledel() {
           </table>
           <div
             style={{
-              maxWidth: '70vw',
+              maxWidth: '100%',
               margin: '0 auto',
               padding: '8px',
             }}
           >
             {showInput ? (
-              <div className='data-del' style={{ fontSize: '14px' }}>
-                <input
-                  type='date'
-                  value={dates}
-                  onChange={handleChange}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    padding: '8px',
-                  }}
-                />
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={dates}
+                          onChange={handleChange}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            marginLeft: '6rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                            padding: '8px',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={vehicleType}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            marginLeft: '10rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setVehicle(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {data.map((auto) => {
+                            return (
+                              <option value={auto.factor}>{auto.factor}</option>
+                            );
+                          })}
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={product}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            marginLeft: '8rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setProduct(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          <option>Maternity bra</option>
+                          <option>Regular bra</option>
+                          <option>Panty</option>
+                          <option>Loungee Long tee kind</option>
+                          <option>Loungee dress kind</option>
+                          <option>Nighty</option>
+                          <option>Lounge Bottom</option>
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={destintion}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            marginLeft: '3rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setDestination(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {city.map((auto) => {
+                            return <option value={auto}>{auto}</option>;
+                          })}
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={items}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            marginLeft: '4rem',
+                            marginRight: '0',
+                            margin: '0 2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setItems(value);
+                            } else if (e.target.value === '') {
+                              setItems('');
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                <select
-                  type={'text'}
-                  value={vehicleType}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0rem 8px 0px 10rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setVehicle(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {data.map((auto) => {
-                    return <option value={auto.factor}>{auto.factor}</option>;
-                  })}
-                </select>
-
-                <select
-                  type={'text'}
-                  value={product}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 0 0 5rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setProduct(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  <option>Maternity bra</option>
-                  <option>Regular bra</option>
-                  <option>Panty</option>
-                  <option>Loungee Long tee kind</option>
-                  <option>Loungee dress kind</option>
-                  <option>Nighty</option>
-                  <option>Lounge Bottom</option>
-                </select>
-
-                <select
-                  type={'text'}
-                  value={destintion}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0rem 8px 0px 10rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setDestination(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {city.map((auto) => {
-                    return <option value={auto}>{auto}</option>;
-                  })}
-                </select>
-                <input
-                  type={'number'}
-                  value={items}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    margin: '0 2rem',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setItems(value);
-                    } else if (e.target.value === '') {
-                      setItems('');
-                    }
-                  }}
-                />
                 <button
                   id='addButton'
                   style={{
@@ -371,7 +390,7 @@ export function Databoardtabledel() {
                 >
                   Add Row
                 </button>
-              </div>
+              </>
             ) : (
               <button
                 id='addButton'

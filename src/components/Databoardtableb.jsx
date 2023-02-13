@@ -118,75 +118,89 @@ export function Databoardtableb() {
           </table>
           <div
             style={{
-              maxWidth: '70vw',
+              maxWidth: '100%',
               padding: '8px',
               margin: '0 auto',
             }}
           >
             {showInput ? (
-              <div className='data-build' style={{ fontSize: '14px' }}>
-                <input
-                  type='date'
-                  value={dates}
-                  onChange={handleChange}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    padding: '8px',
-                  }}
-                />
-                <input
-                  type={'number'}
-                  value={buildingSpace}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0 1rem 0 20rem',
-                    padding: '8px',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setBuilding(value);
-                    } else if (e.target.value === '') {
-                      setBuilding('');
-                    }
-                  }}
-                />
-                <input
-                  type={'number'}
-                  value={warehouse}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 1rem 0 25rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setWarehouse(value);
-                    } else if (e.target.value === '') {
-                      setWarehouse('');
-                    }
-                  }}
-                />
-                <button
-                  id='addButton'
-                  style={{
-                    padding: '4px',
-                    borderRadius: '4px',
-                    color: 'white',
-                    backgroundColor: '#4d7cfe',
-                  }}
-                  onClick={() => {
-                    /*const change = document.querySelector(".databoardtable__tablebody")
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={dates}
+                          onChange={handleChange}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            marginLeft: '8rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                            padding: '8px',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={buildingSpace}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            margin: '0 1rem 0 17rem',
+                            padding: '8px',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setBuilding(value);
+                            } else if (e.target.value === '') {
+                              setBuilding('');
+                            }
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={warehouse}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            marginLeft: '8rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setWarehouse(value);
+                            } else if (e.target.value === '') {
+                              setWarehouse('');
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className='data-build' style={{ fontSize: '14px' }}>
+                  <button
+                    id='addButton'
+                    style={{
+                      padding: '4px',
+                      borderRadius: '4px',
+                      color: 'white',
+                      backgroundColor: '#4d7cfe',
+                    }}
+                    onClick={() => {
+                      /*const change = document.querySelector(".databoardtable__tablebody")
                 change.innerHTML = change.innerHTML + `
                 <tr class="databoardtable__tabletr">
                 <td class="databoardtable__tabletd">25 Jun 2022</td>
@@ -198,34 +212,35 @@ export function Databoardtableb() {
                 <td class="databoardtable__tabletd">coming soon</td>
               </tr>
                 `*/
-                    if (
-                      warehouse > -1 &&
-                      warehouse !== '' &&
-                      dates !== '' &&
-                      buildingSpace > -1 &&
-                      buildingSpace !== ''
-                    ) {
-                      const dateString = dates;
-                      const date = new Date(dateString);
-                      const options = {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                      };
+                      if (
+                        warehouse > -1 &&
+                        warehouse !== '' &&
+                        dates !== '' &&
+                        buildingSpace > -1 &&
+                        buildingSpace !== ''
+                      ) {
+                        const dateString = dates;
+                        const date = new Date(dateString);
+                        const options = {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        };
 
-                      const formattedDate = date.toLocaleDateString(
-                        'en-US',
-                        options
-                      );
+                        const formattedDate = date.toLocaleDateString(
+                          'en-US',
+                          options
+                        );
 
-                      setShowInput(false);
-                      postData();
-                    }
-                  }}
-                >
-                  Add Row
-                </button>
-              </div>
+                        setShowInput(false);
+                        postData();
+                      }
+                    }}
+                  >
+                    Add Row
+                  </button>
+                </div>
+              </>
             ) : (
               <button
                 id='addButton'

@@ -162,85 +162,99 @@ export function Databoardtablec() {
           </table>
           <div>
             {showInput ? (
-              <div style={{ fontSize: '14px' }} className='data-cargo'>
-                <input
-                  type='date'
-                  value={dates}
-                  onChange={handleChange}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    marginLeft: '1rem',
-                    marginRight: '6rem',
-                  }}
-                />
-
-                <select
-                  type={'text'}
-                  value={vehicleType}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0px 3rem 0 0rem',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setVehicle(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {data.map((item) => {
-                    return <option>{item.factor}</option>;
-                  })}
-                </select>
-
-                <input
-                  type={'number'}
-                  value={wt}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0px 0rem 0rem 10rem ',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setWt(value);
-                    } else if (e.target.value === '') {
-                      setWt('');
-                    }
-                  }}
-                />
-
-                <input
-                  type={'number'}
-                  value={distance}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0px 0rem 0rem 10rem ',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setDistance(value);
-                    } else if (e.target.value === '') {
-                      setDistance('');
-                    }
-                  }}
-                />
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={dates}
+                          onChange={handleChange}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                            marginLeft: '12rem',
+                            marginRight: '6rem',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={vehicleType}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            // margin: '0px 3rem 0 0rem',
+                            marginRight: '8rem',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setVehicle(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {data.map((item) => {
+                            return <option>{item.factor}</option>;
+                          })}
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={wt}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            margin: '0px 3rem 0 0rem',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setWt(value);
+                            } else if (e.target.value === '') {
+                              setWt('');
+                            }
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={distance}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            margin: '0px 3rem 0 0rem',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setDistance(value);
+                            } else if (e.target.value === '') {
+                              setDistance('');
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <button
                   id='addButton'
                   style={{
@@ -288,7 +302,7 @@ export function Databoardtablec() {
                 >
                   Add Row
                 </button>
-              </div>
+              </>
             ) : (
               <button
                 id='addButton'

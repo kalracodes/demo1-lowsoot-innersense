@@ -172,117 +172,139 @@ export function Databoardtableco() {
             }}
           >
             {showInput ? (
-              <div className='data-com' style={{ fontSize: '14px' }}>
-                <input
-                  type='date'
-                  value={dates}
-                  onChange={handleChange}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    margin: '0 4rem 0 2.4rem',
-                    padding: '8px',
-                  }}
-                />
-                <select
-                  type={'text'}
-                  value={comType}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 8rem 0 2.4rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setCom(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  <option>Business</option>
-                  <option>Employee</option>
-                </select>
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={dates}
+                          onChange={handleChange}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                            // margin: '0 4rem 0 2.4rem',
+                            marginLeft: '4rem',
+                            padding: '8px',
+                          }}
+                        />
+                      </td>
 
-                <select
-                  type={'text'}
-                  value={vehicleType}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 9rem 0 2.4rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setVehicle(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {data.map((resp) => {
-                    return <option>{resp.factor}</option>;
-                  })}
-                </select>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={comType}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            // margin: '0 8rem 0 2.4rem',
+                            marginLeft: '5rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setCom(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          <option>Business</option>
+                          <option>Employee</option>
+                        </select>
+                      </td>
 
-                <input
-                  type={'number'}
-                  value={passengers}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 1rem 0 0.5rem',
-                    borderRadius: '4px',
-                    width: '10vw',
-                    justifySelf: 'flex-end',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setPassengers(value);
-                    } else if (e.target.value === '') {
-                      setPassengers('');
-                    }
-                  }}
-                />
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={vehicleType}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            marginLeft: '5rem',
+                            padding: '8px',
+                            // margin: '0 9rem 0 2.4rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setVehicle(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {data.map((resp) => {
+                            return <option>{resp.factor}</option>;
+                          })}
+                        </select>
+                      </td>
 
-                <input
-                  type={'number'}
-                  value={distance}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 1rem 0 0.5rem',
-                    borderRadius: '4px',
-                    width: '10vw',
-                    justifySelf: 'flex-end',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setDistance(value);
-                    } else if (e.target.value === '') {
-                      setDistance('');
-                    }
-                  }}
-                />
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={passengers}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            // margin: '0 1rem 0 0.5rem',
+                            borderRadius: '4px',
+                            width: '10vw',
+                            justifySelf: 'flex-end',
+                            marginLeft: '3rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setPassengers(value);
+                            } else if (e.target.value === '') {
+                              setPassengers('');
+                            }
+                          }}
+                        />
+                      </td>
+
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={distance}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            // margin: '0 1rem 0 0.5rem',
+                            borderRadius: '4px',
+                            width: '10vw',
+                            justifySelf: 'flex-end',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setDistance(value);
+                            } else if (e.target.value === '') {
+                              setDistance('');
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <button
                   id='addButton'
                   style={{
                     padding: '8px',
-                    borderRadius: '4px',
+                    borderRadius: '5px',
+                    margin: '2rem 0 ',
                     color: 'white',
                     backgroundColor: '#4d7cfe',
                   }}
@@ -327,7 +349,7 @@ export function Databoardtableco() {
                 >
                   Add Row
                 </button>
-              </div>
+              </>
             ) : (
               <button
                 id='addButton'

@@ -145,3 +145,7 @@ text {
   place-content: center;
   height: 100vh;
 }
+input,
+select {
+  display: block;
+}

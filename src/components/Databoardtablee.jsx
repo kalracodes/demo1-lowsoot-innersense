@@ -148,78 +148,96 @@ export function Databoardtablee() {
           </table>
           <div
             style={{
-              maxWidth: '70vw',
+              maxWidth: '100%',
               padding: '8px',
               margin: '0 auto',
             }}
           >
             {showInput ? (
-              <div className='data-e' style={{ fontSize: '14px' }}>
-                <input
-                  type='date'
-                  value={dates}
-                  onChange={handleChange}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    margin: '0 0.0rem 0 1rem ',
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td
+                        className='databoardtable__tabletd'
+                        scope='col'
+                        style={{ width: '50%' }}
+                      >
+                        <input
+                          type='date'
+                          value={dates}
+                          onChange={handleChange}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                            // margin: '0 0.0rem 0 1rem ',
+                            marginLeft: '20rem',
 
-                    padding: '8px',
-                  }}
-                />
-
-                <select
-                  type={'text'}
-                  value={source}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 0.25rem 0 15rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setSource(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {data.map((resp) => {
-                    return <option>{resp.factor}</option>;
-                  })}
-                </select>
-
-                <input
-                  type={'number'}
-                  value={energy}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    padding: '8px',
-                    margin: '0 0.25rem 0 25rem',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (value > -1) {
-                      setEnergy(value);
-                    } else if (e.target.value === '') {
-                      setEnergy('');
-                    }
-                  }}
-                />
+                            padding: '8px',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd'>
+                        <select
+                          type={'text'}
+                          value={source}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            marginLeft: '4rem',
+                            marginRight: '2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setSource(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {data.map((resp) => {
+                            return <option>{resp.factor}</option>;
+                          })}
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd'>
+                        <input
+                          type={'number'}
+                          value={energy}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            padding: '8px',
+                            marginLeft: '4rem',
+                            borderRadius: '4px',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value > -1) {
+                              setEnergy(value);
+                            } else if (e.target.value === '') {
+                              setEnergy('');
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <button
                   type='submit'
                   id='addButton'
                   style={{
                     padding: '8px',
                     borderRadius: '4px',
+                    margin: '2rem 0 ',
+                    fontSize: '1.5rem',
                     color: 'white',
                     backgroundColor: '#4d7cfe',
                   }}
@@ -253,16 +271,18 @@ export function Databoardtablee() {
                 >
                   Add Row
                 </button>
-              </div>
+              </>
             ) : (
               <button
                 id='addButton'
                 style={{
-                  padding: '8px',
+                  padding: '8px 15px',
                   borderRadius: '4px',
                   color: 'white',
                   backgroundColor: '#4d7cfe',
                   display: 'hidden',
+                  marginLeft: '0',
+                  fontSize: '2.75rem',
                 }}
                 onClick={() => setShowInput(true)}
               >
