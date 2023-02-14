@@ -303,8 +303,9 @@ export function Databoardtableco() {
                   id='addButton'
                   style={{
                     padding: '8px',
-                    borderRadius: '5px',
+                    borderRadius: '4px',
                     margin: '2rem 0 ',
+                    fontSize: '1.5rem',
                     color: 'white',
                     backgroundColor: '#4d7cfe',
                   }}
@@ -354,11 +355,13 @@ export function Databoardtableco() {
               <button
                 id='addButton'
                 style={{
-                  padding: '8px',
+                  padding: '8px 15px',
                   borderRadius: '4px',
                   color: 'white',
                   backgroundColor: '#4d7cfe',
                   display: 'hidden',
+                  marginLeft: '0',
+                  fontSize: '2.75rem',
                 }}
                 onClick={() => setShowInput(true)}
               >

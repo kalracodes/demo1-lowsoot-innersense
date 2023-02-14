@@ -208,125 +208,140 @@ export function Databoardtablecn() {
               })}
             </tbody>
           </table>
-          <div>
+          <div
+            style={{
+              maxWidth: '100%',
+              padding: '8px',
+              margin: '0 auto',
+            }}
+          >
             {showInput ? (
-              <div style={{ fontSize: '14px' }} className='data-cargo'>
-                <select
-                  type={'text'}
-                  value={emType}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0px 3rem 0 0rem',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setEmType(value);
-                  }}
-                >
-                  <option selected='' disabled='' value=''>
-                    Choose...
-                  </option>
-                  {data.map((item) => {
-                    return <option value={item}>{item}</option>;
-                  })}
-                </select>
+              <>
+                <table className='databoardtable__table'>
+                  <tbody className='databoardtable__tablebody'>
+                    <tr className='databoardtable__theadtr'>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <select
+                          type={'text'}
+                          value={emType}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            marginLeft: '2rem',
+                            padding: '1.2rem',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setEmType(value);
+                          }}
+                        >
+                          <option selected='' disabled='' value=''>
+                            Choose...
+                          </option>
+                          {data.map((item) => {
+                            return <option value={item}>{item}</option>;
+                          })}
+                        </select>
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='text'
+                          value={tillDate}
+                          disabled
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            marginLeft: '2rem',
+                            padding: '1.2rem',
+                            backgroundColor: 'white',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={stDate}
+                          onChange={(e) => setStDate(e.target.value)}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='date'
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            marginLeft: '4rem',
+                            padding: '1.2rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type='number'
+                          value={emSaved}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            console.log(emSaved);
+                            setEmSaved(value);
+                          }}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            marginLeft: '1rem',
+                            borderRadius: '4px',
+                            padding: '1.2rem',
+                            width: '120px',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                          }}
+                        />
+                      </td>
+                      <td className='databoardtable__tabletd' scope='col'>
+                        <input
+                          type={'number'}
+                          value={emSpent}
+                          style={{
+                            appearance: 'none',
+                            border: 'solid 0.5px',
+                            borderRadius: '4px',
+                            width: '120px',
+                            padding: '1.2rem',
+                            // marginLeft: '2rem',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
+                          }}
+                          required={true}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            setEmSpent(value);
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
                 {/* {emType ? seeTillDate() : null} */}
-                <input
-                  type='text'
-                  value={tillDate}
-                  disabled
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    marginLeft: '1rem',
-                    marginRight: '6rem',
-                  }}
-                />
 
-                <input
-                  type='date'
-                  value={stDate}
-                  onChange={(e) => setStDate(e.target.value)}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    marginLeft: '1rem',
-                    marginRight: '6rem',
-                  }}
-                />
-
-                <input
-                  type='date'
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    marginLeft: '1rem',
-                    marginRight: '6rem',
-                  }}
-                />
-
-                <input
-                  type='number'
-                  value={emSaved}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    console.log(emSaved);
-                    setEmSaved(value);
-                  }}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    borderRadius: '4px',
-                    padding: '1.2rem',
-                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-                    marginLeft: '1rem',
-                    marginRight: '1rem',
-                  }}
-                />
-
-                <input
-                  type={'number'}
-                  value={emSpent}
-                  style={{
-                    appearance: 'none',
-                    border: 'solid 0.5px',
-                    margin: '0px 1rem 0rem 1rem ',
-                    borderRadius: '4px',
-                  }}
-                  required={true}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    setEmSpent(value);
-                  }}
-                />
-                {console.log(
-                  emSpent,
-                  emSaved,
-                  stDate,
-                  endDate,
-                  emType,
-                  tillDate
-                )}
                 <button
                   id='addButton'
                   style={{
                     padding: '8px',
                     borderRadius: '4px',
+                    margin: '2rem 0 ',
+                    fontSize: '1.5rem',
                     color: 'white',
                     backgroundColor: '#4d7cfe',
                   }}
@@ -361,16 +376,18 @@ export function Databoardtablecn() {
                 >
                   Add Row
                 </button>
-              </div>
+              </>
             ) : (
               <button
                 id='addButton'
                 style={{
-                  padding: '8px',
+                  padding: '8px 15px',
                   borderRadius: '4px',
                   color: 'white',
                   backgroundColor: '#4d7cfe',
                   display: 'hidden',
+                  marginLeft: '0',
+                  fontSize: '2.75rem',
                 }}
                 onClick={() => setShowInput(true)}
               >

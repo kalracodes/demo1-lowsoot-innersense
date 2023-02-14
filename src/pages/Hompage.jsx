@@ -235,6 +235,23 @@ export function Hompage() {
                             {data.totalEmployeeCommuteDistance} Kms{' '}
                           </p>
                         </div>
+                        {company == 2 ? (
+                          <>
+                            <div className='summaryparam '>
+                              <p className='summaryparam__title'>
+                                Carbon Intensity <br />
+                                <br />
+                              </p>
+                              <p className='summaryparam__value'>
+                                {data['TotalProductSales']
+                                  ? data['total'] / data['TotalProductSales']
+                                  : '0'}{' '}
+                                CO
+                                <sub>2</sub>e{' '}
+                              </p>
+                            </div>
+                          </>
+                        ) : null}
                         {company == 1 ? (
                           <>
                             <div className='summaryparam'>
@@ -390,7 +407,10 @@ export function Hompage() {
                                 <br />
                               </p>
                               <p className='summaryparam__value'>
-                                {data.Product['Panty'].saved} CO
+                                {data['TotalProductSales']
+                                  ? data['total'] / data['TotalProductSales']
+                                  : '0'}{' '}
+                                CO
                                 <sub>2</sub>e{' '}
                               </p>
                             </div>

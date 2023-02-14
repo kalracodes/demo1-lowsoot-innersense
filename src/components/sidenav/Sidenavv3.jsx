@@ -31,7 +31,7 @@ export function Sidenavv3({ totBuildingSp, totWhSp }) {
             )}
           </div>
           <p className='sidenavv3__logopara'>
-            {company == 1 ? `Innersense` : 'Shebil'}
+            {company == 1 ? `Innersense` : 'Shibel'}
           </p>
         </div>
         <div className='sidenavv3__homemenu'>

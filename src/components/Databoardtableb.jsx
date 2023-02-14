@@ -245,11 +245,13 @@ export function Databoardtableb() {
               <button
                 id='addButton'
                 style={{
-                  padding: '8px',
+                  padding: '8px 15px',
                   borderRadius: '4px',
                   color: 'white',
                   backgroundColor: '#4d7cfe',
                   display: 'hidden',
+                  marginLeft: '0',
+                  fontSize: '2.75rem',
                 }}
                 onClick={() => setShowInput(true)}
               >
